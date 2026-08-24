@@ -1,0 +1,70 @@
+/*
+ * Skeuomorphic theme — wood, brass, glow.
+ * Activated via <html data-theme="skeuo">.
+ */
+[data-theme='skeuo'] {
+	--enigma-bg: #1c140d;
+	--chassis: #523a26;
+	--chassis-edge: #2b1c11;
+	--chassis-shadow: rgba(0, 0, 0, 0.65);
+	--chassis-highlight: rgba(255, 215, 160, 0.07);
+	--chassis-grain:
+		repeating-linear-gradient(
+			92deg,
+			rgba(0, 0, 0, 0.05) 0,
+			rgba(0, 0, 0, 0.05) 1px,
+			transparent 1px,
+			transparent 4px
+		),
+		repeating-linear-gradient(
+			3deg,
+			rgba(255, 220, 170, 0.03) 0,
+			rgba(255, 220, 170, 0.03) 1px,
+			transparent 1px,
+			transparent 9px
+		);
+
+	--bezel: #1a1108;
+	--bezel-inner: #0c0703;
+	--bezel-edge: #6b4a2e;
+
+	--key-face: #1a1108;
+	--key-face-pressed: #0c0703;
+	--key-rim: #8a6438;
+	--key-rim-pressed: #5a3f24;
+	--key-letter: #f4e6c8;
+	--key-letter-shadow: rgba(0, 0, 0, 0.85);
+
+	--lamp-off: #1c160e;
+	--lamp-rim: #6a4a2a;
+	--lamp-letter-off: rgba(244, 230, 200, 0.15);
+	--lamp-letter-on: #fffae0;
+	--lamp-glow: rgba(255, 220, 130, 0.95);
+	--lamp-glow-soft: rgba(255, 200, 90, 0.45);
+
+	--rotor-window-bg: #0a0703;
+	--rotor-window-rim: #2a1a0d;
+	--rotor-metal: linear-gradient(
+		180deg,
+		#dab47e 0%,
+		#a47540 35%,
+		#6a4823 65%,
+		#3d2914 100%
+	);
+	--rotor-metal-side: #6a4a2c;
+	--rotor-letter: #fbeac3;
+	--rotor-thumb-arrow: #f4cf7d;
+
+	--socket-rim: #6a4828;
+	--socket-hole: #060302;
+	--socket-hole-empty: #060302;
+	--socket-plugged: #f4cf7d;
+	--cable: #1a0e07;
+	--cable-shadow: rgba(0, 0, 0, 0.8);
+
+	--accent: #d6a85a;
+	--accent-strong: #f4cf7d;
+	--brand-text: #f0d9a4;
+	--muted: rgba(244, 230, 200, 0.55);
+	--danger: #d05242;
+}

@@ -1,0 +1,63 @@
+/*
+ * Theme contract: every visual component reads from these custom properties.
+ * A theme file (e.g. skeuomorphic.css) supplies values under [data-theme="…"].
+ * Keeping all visual variables here means a new skin is purely additive.
+ */
+:root {
+	/* Surface — the wooden box / chassis */
+	--enigma-bg: #2a2118;
+	--chassis: #4b3826;
+	--chassis-edge: #2c1d12;
+	--chassis-shadow: rgba(0, 0, 0, 0.6);
+	--chassis-highlight: rgba(255, 215, 160, 0.06);
+	--chassis-grain: none;
+
+	/* Bezels around lampboard / keyboard / plugboard */
+	--bezel: #1a1109;
+	--bezel-inner: #0d0805;
+	--bezel-edge: #5a3f2a;
+
+	/* Keys */
+	--key-face: #1c1410;
+	--key-face-pressed: #0e0907;
+	--key-rim: #6e5036;
+	--key-rim-pressed: #4a3322;
+	--key-letter: #f4e6c8;
+	--key-letter-shadow: rgba(0, 0, 0, 0.7);
+
+	/* Lamps (off + on) */
+	--lamp-off: #2b2418;
+	--lamp-rim: #5a4124;
+	--lamp-letter-off: rgba(244, 230, 200, 0.18);
+	--lamp-letter-on: #fff7d8;
+	--lamp-glow: rgba(255, 213, 110, 0.85);
+	--lamp-glow-soft: rgba(255, 200, 90, 0.35);
+
+	/* Readouts: Enigma rotor windows and PURPLE switch dials, plus rotor metal */
+	--rotor-window-bg: #100b07;
+	--rotor-window-rim: #2a1c10;
+	--rotor-metal: linear-gradient(180deg, #c9a373 0%, #8a6638 50%, #4f3820 100%);
+	--rotor-metal-side: #6a4a2c;
+	--rotor-letter: #f7e6c2;
+	--rotor-thumb-arrow: #f4e6c8;
+
+	/* Plugboard */
+	--socket-rim: #3b2818;
+	--socket-hole: #08050300;
+	--socket-hole-empty: #08050300;
+	--socket-plugged: #f4cf7d;
+	--cable: #2a1f15;
+	--cable-shadow: rgba(0, 0, 0, 0.6);
+
+	/* Interactive accents */
+	--accent: #d6a85a;
+	--accent-strong: #f4cf7d;
+	--brand-text: #e9d6a4;
+	--muted: rgba(244, 230, 200, 0.55);
+	--danger: #c44b3a;
+
+	/* Typography */
+	--font-stack-display: 'Cormorant Garamond', 'Times New Roman', serif;
+	--font-stack-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+	--font-stack-ui: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}

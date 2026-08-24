@@ -1,7 +1,7 @@
-import { ALPHABET_SIZE, charToIndex, indexToChar, isLetter, mod26 } from './alphabet';
-import { Plugboard, type PlugPair } from './plugboard';
-import { REFLECTOR_IDS, Reflector, type ReflectorId } from './reflectors';
-import { ROTOR_IDS, Rotor, type RotorId } from './rotors';
+import { ALPHABET_SIZE, charToIndex, indexToChar, isLetter, mod26 } from "./alphabet";
+import { Plugboard, type PlugPair } from "./plugboard";
+import { REFLECTOR_IDS, Reflector, type ReflectorId } from "./reflectors";
+import { ROTOR_IDS, Rotor, type RotorId } from "./rotors";
 
 export type Triple<T> = [T, T, T];
 
@@ -14,18 +14,18 @@ export interface MachineConfig {
 }
 
 export const DEFAULT_CONFIG: MachineConfig = {
-	rotors: ['I', 'II', 'III'],
+	rotors: ["I", "II", "III"],
 	rings: [0, 0, 0],
 	positions: [0, 0, 0],
-	reflector: 'B',
-	plugboard: []
+	reflector: "B",
+	plugboard: [],
 };
 
 function triple<T>(
 	v: unknown,
 	field: string,
 	check: (x: unknown) => boolean,
-	expected: string
+	expected: string,
 ): Triple<T> {
 	if (!Array.isArray(v) || v.length !== 3) {
 		throw new Error(`${field} must be an array of 3 values`);
@@ -33,14 +33,14 @@ function triple<T>(
 	for (const x of v) {
 		if (!check(x))
 			throw new Error(
-				`${field} contains an invalid value: ${JSON.stringify(x)} (expected ${expected})`
+				`${field} contains an invalid value: ${JSON.stringify(x)} (expected ${expected})`,
 			);
 	}
 	return [...v] as Triple<T>;
 }
 
 function isDialValue(x: unknown): boolean {
-	return typeof x === 'number' && Number.isInteger(x) && x >= 0 && x < ALPHABET_SIZE;
+	return typeof x === "number" && Number.isInteger(x) && x >= 0 && x < ALPHABET_SIZE;
 }
 
 /**
@@ -52,30 +52,30 @@ function isDialValue(x: unknown): boolean {
  * non-numeric position, silently encrypting to NUL bytes.
  */
 export function parseConfig(raw: unknown): MachineConfig {
-	if (typeof raw !== 'object' || raw === null) throw new Error('Config must be an object');
+	if (typeof raw !== "object" || raw === null) throw new Error("Config must be an object");
 	const c = raw as Record<string, unknown>;
 
 	const rotors = triple<RotorId>(
 		c.rotors,
-		'rotors',
+		"rotors",
 		(x) => ROTOR_IDS.includes(x as RotorId),
-		ROTOR_IDS.join('/')
+		ROTOR_IDS.join("/"),
 	);
 	if (new Set(rotors).size !== 3)
-		throw new Error(`rotors must be distinct, got ${rotors.join(', ')}`);
+		throw new Error(`rotors must be distinct, got ${rotors.join(", ")}`);
 
 	if (!REFLECTOR_IDS.includes(c.reflector as ReflectorId)) {
 		throw new Error(
-			`Unknown reflector: ${JSON.stringify(c.reflector)} (expected ${REFLECTOR_IDS.join('/')})`
+			`Unknown reflector: ${JSON.stringify(c.reflector)} (expected ${REFLECTOR_IDS.join("/")})`,
 		);
 	}
 
-	if (!Array.isArray(c.plugboard)) throw new Error('plugboard must be an array');
+	if (!Array.isArray(c.plugboard)) throw new Error("plugboard must be an array");
 	const plugboard = c.plugboard.map((pair, i) => {
 		if (!Array.isArray(pair) || pair.length !== 2)
 			throw new Error(`plugboard[${i}] must be a pair of letters`);
 		return pair.map((l) => {
-			if (typeof l !== 'string' || !/^[A-Za-z]$/.test(l)) {
+			if (typeof l !== "string" || !/^[A-Za-z]$/.test(l)) {
 				throw new Error(`plugboard[${i}] contains an invalid letter: ${JSON.stringify(l)}`);
 			}
 			return l.toUpperCase();
@@ -85,10 +85,10 @@ export function parseConfig(raw: unknown): MachineConfig {
 
 	return {
 		rotors,
-		rings: triple<number>(c.rings, 'rings', isDialValue, '0-25'),
-		positions: triple<number>(c.positions, 'positions', isDialValue, '0-25'),
+		rings: triple<number>(c.rings, "rings", isDialValue, "0-25"),
+		positions: triple<number>(c.positions, "positions", isDialValue, "0-25"),
 		reflector: c.reflector as ReflectorId,
-		plugboard
+		plugboard,
 	};
 }
 
@@ -150,7 +150,7 @@ export class Enigma {
 	}
 
 	encryptString(s: string): string {
-		let out = '';
+		let out = "";
 		for (const c of s) out += this.encryptChar(c);
 		return out;
 	}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { KEYBOARD_ROWS } from '$lib/keyboard-layout';
+	import { KEYBOARD_ROWS } from "$lib/keyboard-layout";
 
 	interface Props {
 		lit: string | null;

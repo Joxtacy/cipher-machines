@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { purple, SWITCH_LABELS, type SwitchSlot } from '$lib/state/purple.svelte';
-	import { purplePresets } from '$lib/state/presets.svelte';
-	import { isValidAlphabet, type SwitchRole } from '$lib/purple/machine';
-	import Keyboard from './Keyboard.svelte';
-	import Tape from './Tape.svelte';
-	import PresetManager from './PresetManager.svelte';
+	import { onMount } from "svelte";
+	import { purple, SWITCH_LABELS, type SwitchSlot } from "$lib/state/purple.svelte";
+	import { purplePresets } from "$lib/state/presets.svelte";
+	import { isValidAlphabet, type SwitchRole } from "$lib/purple/machine";
+	import Keyboard from "./Keyboard.svelte";
+	import Tape from "./Tape.svelte";
+	import PresetManager from "./PresetManager.svelte";
 
 	let pressed: string | null = $state(null);
 	let releaseTimer: ReturnType<typeof setTimeout> | null = null;
@@ -17,7 +17,7 @@
 
 	let canRewind = $derived(purple.recentKeys.length > 0);
 	let messageStartLabel = $derived(
-		purple.messageStart.map((p) => String(p + 1).padStart(2, '0')).join(' ')
+		purple.messageStart.map((p) => String(p + 1).padStart(2, "0")).join(" "),
 	);
 
 	const slots: SwitchSlot[] = [0, 1, 2, 3];
@@ -28,11 +28,11 @@
 	 * shown but not selectable: it is derived from the other two, and choosing it
 	 * directly would be ambiguous about which remaining stage becomes fast.
 	 */
-	const SPEED_ROWS = [{ role: 'fast' }, { role: 'middle' }, { role: 'slow' }] as const;
+	const SPEED_ROWS = [{ role: "fast" }, { role: "middle" }, { role: "slow" }] as const;
 
-	function selectedStage(role: 'fast' | 'middle' | 'slow'): SwitchRole {
-		if (role === 'fast') return purple.fastSwitch;
-		if (role === 'middle') return purple.middleSwitch;
+	function selectedStage(role: "fast" | "middle" | "slow"): SwitchRole {
+		if (role === "fast") return purple.fastSwitch;
+		if (role === "middle") return purple.middleSwitch;
 		return purple.slowSwitch;
 	}
 
@@ -55,15 +55,15 @@
 	}
 
 	function roleOf(stage: SwitchRole): string {
-		if (purple.fastSwitch === stage) return 'fast';
-		if (purple.middleSwitch === stage) return 'middle';
-		return 'slow';
+		if (purple.fastSwitch === stage) return "fast";
+		if (purple.middleSwitch === stage) return "middle";
+		return "slow";
 	}
 
 	function onKeyDown(e: KeyboardEvent) {
 		if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
 		const target = e.target as HTMLElement | null;
-		if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) return;
+		if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA")) return;
 		if (e.key.length === 1 && /^[a-zA-Z-]$/.test(e.key)) {
 			e.preventDefault();
 			pressLetter(e.key);
@@ -75,11 +75,11 @@
 	}
 
 	onMount(() => {
-		window.addEventListener('keydown', onKeyDown);
-		window.addEventListener('keyup', onKeyUp);
+		window.addEventListener("keydown", onKeyDown);
+		window.addEventListener("keyup", onKeyUp);
 		return () => {
-			window.removeEventListener('keydown', onKeyDown);
-			window.removeEventListener('keyup', onKeyUp);
+			window.removeEventListener("keydown", onKeyDown);
+			window.removeEventListener("keyup", onKeyUp);
 		};
 	});
 </script>
@@ -95,9 +95,9 @@
 				</div>
 			</div>
 			<div class="mode" role="group" aria-label="Direction">
-				{#each ['encrypt', 'decrypt'] as const as m (m)}
+				{#each ["encrypt", "decrypt"] as const as m (m)}
 					<button type="button" class:active={purple.mode === m} onclick={() => purple.setMode(m)}>
-						{m === 'encrypt' ? 'Encipher' : 'Decipher'}
+						{m === "encrypt" ? "Encipher" : "Decipher"}
 					</button>
 				{/each}
 			</div>
@@ -125,7 +125,7 @@
 						</svg>
 					</button>
 					<div class="window">
-						<span class="value">{String(purple.switches[slot] + 1).padStart(2, '0')}</span>
+						<span class="value">{String(purple.switches[slot] + 1).padStart(2, "0")}</span>
 					</div>
 					<button
 						type="button"
@@ -142,12 +142,12 @@
 		</section>
 
 		<section class="printer bezel" aria-label="Printer">
-			<span class="printer-label">{purple.mode === 'encrypt' ? 'Cipher' : 'Plain'}</span>
+			<span class="printer-label">{purple.mode === "encrypt" ? "Cipher" : "Plain"}</span>
 			<span class="printer-out" class:lit={purple.lastOutput !== null}>
-				{purple.lastOutput ?? '·'}
+				{purple.lastOutput ?? "·"}
 			</span>
 			<span class="printer-hint">
-				{purple.mode === 'decrypt' ? 'type “-” for a garble' : 'A–Z only'}
+				{purple.mode === "decrypt" ? "type “-” for a garble" : "A–Z only"}
 			</span>
 		</section>
 
@@ -208,11 +208,11 @@
 								<button
 									type="button"
 									class:active={selectedStage(row.role) === stage}
-									disabled={row.role === 'slow'}
-									title={row.role === 'slow'
-										? 'Derived — the stage that is neither fast nor middle'
+									disabled={row.role === "slow"}
+									title={row.role === "slow"
+										? "Derived — the stage that is neither fast nor middle"
 										: `Make stage ${SWITCH_LABELS[stage]} the ${row.role} switch`}
-									onclick={() => row.role !== 'slow' && purple.setRole(row.role, stage)}
+									onclick={() => row.role !== "slow" && purple.setRole(row.role, stage)}
 								>
 									{SWITCH_LABELS[stage]}
 								</button>
@@ -230,7 +230,7 @@
 						disabled={!canRewind}
 						title={canRewind
 							? `Wind the dials back to ${messageStartLabel} and clear the tape`
-							: 'Nothing to rewind — no message in progress'}
+							: "Nothing to rewind — no message in progress"}
 						onclick={() => purple.rewind()}
 					>
 						Rewind to {messageStartLabel}

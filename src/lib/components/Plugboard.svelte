@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PlugPair } from '$lib/enigma/plugboard';
+	import type { PlugPair } from "$lib/enigma/plugboard";
 
 	interface Props {
 		plugboard: PlugPair[];
@@ -10,7 +10,7 @@
 
 	let { plugboard, onAdd, onRemove, partner }: Props = $props();
 
-	const ROWS: string[][] = ['ABCDEFGHIJKLM'.split(''), 'NOPQRSTUVWXYZ'.split('')];
+	const ROWS: string[][] = ["ABCDEFGHIJKLM".split(""), "NOPQRSTUVWXYZ".split("")];
 
 	// Layout constants — kept in sync with .socket and .row CSS.
 	const SOCKET_W = 41.6; // 2.6rem at 16px
@@ -81,7 +81,7 @@
 				const my = Math.max(from.y, to.y) + 28 + (i % 4) * 6;
 				return { a, b, from, to, mx, my };
 			})
-			.filter(<T,>(x: T | null): x is T => x !== null)
+			.filter(<T,>(x: T | null): x is T => x !== null),
 	);
 </script>
 

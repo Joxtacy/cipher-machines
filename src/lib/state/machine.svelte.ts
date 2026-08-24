@@ -1,9 +1,9 @@
-import { DEFAULT_CONFIG, Enigma, type MachineConfig, type Triple } from '$lib/enigma/machine';
-import { MAX_PLUG_PAIRS, type PlugPair } from '$lib/enigma/plugboard';
-import type { ReflectorId } from '$lib/enigma/reflectors';
-import type { RotorId } from '$lib/enigma/rotors';
-import { mod26 } from '$lib/enigma/alphabet';
-import type { RecentKey } from './tape';
+import { DEFAULT_CONFIG, Enigma, type MachineConfig, type Triple } from "$lib/enigma/machine";
+import { MAX_PLUG_PAIRS, type PlugPair } from "$lib/enigma/plugboard";
+import type { ReflectorId } from "$lib/enigma/reflectors";
+import type { RotorId } from "$lib/enigma/rotors";
+import { mod26 } from "$lib/enigma/alphabet";
+import type { RecentKey } from "./tape";
 
 export type { RecentKey };
 
@@ -31,7 +31,7 @@ export class MachineStore {
 			rings: [...this.rings] as Triple<number>,
 			positions: [...this.positions] as Triple<number>,
 			reflector: this.reflector,
-			plugboard: this.plugboard.map((p) => [...p] as PlugPair)
+			plugboard: this.plugboard.map((p) => [...p] as PlugPair),
 		};
 	}
 

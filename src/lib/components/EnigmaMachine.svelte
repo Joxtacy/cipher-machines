@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { indexToChar, isLetter } from '$lib/enigma/alphabet';
-	import { machine } from '$lib/state/machine.svelte';
-	import { presets } from '$lib/state/presets.svelte';
-	import Lampboard from './Lampboard.svelte';
-	import Keyboard from './Keyboard.svelte';
-	import Rotors from './Rotors.svelte';
-	import Plugboard from './Plugboard.svelte';
-	import Settings from './Settings.svelte';
-	import Tape from './Tape.svelte';
-	import PresetManager from './PresetManager.svelte';
+	import { onMount } from "svelte";
+	import { indexToChar, isLetter } from "$lib/enigma/alphabet";
+	import { machine } from "$lib/state/machine.svelte";
+	import { presets } from "$lib/state/presets.svelte";
+	import Lampboard from "./Lampboard.svelte";
+	import Keyboard from "./Keyboard.svelte";
+	import Rotors from "./Rotors.svelte";
+	import Plugboard from "./Plugboard.svelte";
+	import Settings from "./Settings.svelte";
+	import Tape from "./Tape.svelte";
+	import PresetManager from "./PresetManager.svelte";
 
 	let pressed: string | null = $state(null);
 	let releaseTimer: ReturnType<typeof setTimeout> | null = null;
@@ -50,11 +50,11 @@
 	}
 
 	onMount(() => {
-		window.addEventListener('keydown', onKeyDown);
-		window.addEventListener('keyup', onKeyUp);
+		window.addEventListener("keydown", onKeyDown);
+		window.addEventListener("keyup", onKeyUp);
 		return () => {
-			window.removeEventListener('keydown', onKeyDown);
-			window.removeEventListener('keyup', onKeyUp);
+			window.removeEventListener("keydown", onKeyDown);
+			window.removeEventListener("keyup", onKeyUp);
 		};
 	});
 </script>
@@ -104,7 +104,7 @@
 			onReset={() => machine.reset()}
 			onRewind={() => machine.rewind()}
 			onNewMessage={() => machine.newMessage()}
-			messageStart={machine.messageStart.map(indexToChar).join('')}
+			messageStart={machine.messageStart.map(indexToChar).join("")}
 			canRewind={machine.recentKeys.length > 0}
 		/>
 		<Tape recentKeys={machine.recentKeys} />

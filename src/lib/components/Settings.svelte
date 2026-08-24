@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { RotorId } from '$lib/enigma/rotors';
-	import type { ReflectorId } from '$lib/enigma/reflectors';
-	import type { Triple } from '$lib/enigma/machine';
+	import type { RotorId } from "$lib/enigma/rotors";
+	import type { ReflectorId } from "$lib/enigma/reflectors";
+	import type { Triple } from "$lib/enigma/machine";
 
 	interface Props {
 		rotors: Triple<RotorId>;
@@ -28,13 +28,13 @@
 		onRewind,
 		onNewMessage,
 		messageStart,
-		canRewind
+		canRewind,
 	}: Props = $props();
 
-	const ROTOR_OPTIONS: RotorId[] = ['I', 'II', 'III', 'IV', 'V'];
-	const REFLECTOR_OPTIONS: ReflectorId[] = ['A', 'B', 'C'];
+	const ROTOR_OPTIONS: RotorId[] = ["I", "II", "III", "IV", "V"];
+	const REFLECTOR_OPTIONS: ReflectorId[] = ["A", "B", "C"];
 	const slots: Array<0 | 1 | 2> = [0, 1, 2];
-	const slotLabels = ['Left', 'Middle', 'Right'];
+	const slotLabels = ["Left", "Middle", "Right"];
 </script>
 
 <div class="card">
@@ -84,7 +84,7 @@
 				disabled={!canRewind}
 				title={canRewind
 					? `Wind the rotors back to ${messageStart} and clear the tape`
-					: 'Nothing to rewind — no message in progress'}
+					: "Nothing to rewind — no message in progress"}
 				onclick={onRewind}
 			>
 				Rewind to {messageStart}

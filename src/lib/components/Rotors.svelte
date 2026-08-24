@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { indexToChar } from '$lib/enigma/alphabet';
-	import type { RotorId } from '$lib/enigma/rotors';
-	import type { Triple } from '$lib/enigma/machine';
+	import { indexToChar } from "$lib/enigma/alphabet";
+	import type { RotorId } from "$lib/enigma/rotors";
+	import type { Triple } from "$lib/enigma/machine";
 
 	interface Props {
 		rotors: Triple<RotorId>;
@@ -14,7 +14,7 @@
 	let { rotors, positions, rings, onAdvance, onAdvanceRing }: Props = $props();
 
 	const slots: Array<0 | 1 | 2> = [0, 1, 2];
-	const labels = ['Left', 'Middle', 'Right'];
+	const labels = ["Left", "Middle", "Right"];
 </script>
 
 <div class="rotors bezel" aria-label="Rotor windows">

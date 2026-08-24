@@ -1,6 +1,6 @@
-import { ALPHABET_SIZE, charToIndex, mod26 } from './alphabet';
+import { ALPHABET_SIZE, charToIndex, mod26 } from "./alphabet";
 
-export type RotorId = 'I' | 'II' | 'III' | 'IV' | 'V';
+export type RotorId = "I" | "II" | "III" | "IV" | "V";
 
 interface RotorSpec {
 	wiring: string;
@@ -8,11 +8,11 @@ interface RotorSpec {
 }
 
 export const ROTOR_SPECS: Record<RotorId, RotorSpec> = {
-	I: { wiring: 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', notch: 'Q' },
-	II: { wiring: 'AJDKSIRUXBLHWTMCQGZNPYFVOE', notch: 'E' },
-	III: { wiring: 'BDFHJLCPRTXVZNYEIWGAKMUSQO', notch: 'V' },
-	IV: { wiring: 'ESOVPZJAYQUIRHXLNFTGKDCMWB', notch: 'J' },
-	V: { wiring: 'VZBRGITYUPSDNHLXAWMJQOFECK', notch: 'Z' }
+	I: { wiring: "EKMFLGDQVZNTOWYHXUSPAIBRCJ", notch: "Q" },
+	II: { wiring: "AJDKSIRUXBLHWTMCQGZNPYFVOE", notch: "E" },
+	III: { wiring: "BDFHJLCPRTXVZNYEIWGAKMUSQO", notch: "V" },
+	IV: { wiring: "ESOVPZJAYQUIRHXLNFTGKDCMWB", notch: "J" },
+	V: { wiring: "VZBRGITYUPSDNHLXAWMJQOFECK", notch: "Z" },
 };
 
 export const ROTOR_IDS = Object.keys(ROTOR_SPECS) as RotorId[];

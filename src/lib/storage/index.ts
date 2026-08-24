@@ -1,7 +1,7 @@
-import { isTauri } from '$lib/platform/tauri';
-import { localStorageDriver } from './localStorage';
-import { tauriFsDriver } from './tauriFs';
-import type { PresetDriver } from './driver';
+import { isTauri } from "$lib/platform/tauri";
+import { localStorageDriver } from "./localStorage";
+import { tauriFsDriver } from "./tauriFs";
+import type { PresetDriver } from "./driver";
 
 let cached: PresetDriver | null = null;
 
@@ -11,5 +11,5 @@ export function getDriver(): PresetDriver {
 	return cached;
 }
 
-export type { PresetDriver, PresetRecord, PresetSummary } from './driver';
-export { safeFilename, safeNamespace } from './driver';
+export type { PresetDriver, PresetRecord, PresetSummary } from "./driver";
+export { safeFilename, safeNamespace } from "./driver";

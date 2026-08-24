@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PurpleMachine from '$lib/components/PurpleMachine.svelte';
+	import PurpleMachine from "$lib/components/PurpleMachine.svelte";
 </script>
 
 <svelte:head>

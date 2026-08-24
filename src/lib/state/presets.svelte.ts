@@ -1,6 +1,6 @@
-import { parseConfig, type MachineConfig } from '$lib/enigma/machine';
-import { parsePurpleKey, type PurpleKey } from '$lib/purple/machine';
-import { getDriver, type PresetDriver, type PresetSummary } from '$lib/storage';
+import { parseConfig, type MachineConfig } from "$lib/enigma/machine";
+import { parsePurpleKey, type PurpleKey } from "$lib/purple/machine";
+import { getDriver, type PresetDriver, type PresetSummary } from "$lib/storage";
 
 /**
  * Named presets for one cipher machine.
@@ -22,10 +22,10 @@ export class PresetsStore<T> {
 	constructor(
 		private readonly namespace: string,
 		private readonly parse: (raw: unknown) => T,
-		private readonly driver: PresetDriver = getDriver()
+		private readonly driver: PresetDriver = getDriver(),
 	) {}
 
-	get kind(): PresetDriver['kind'] {
+	get kind(): PresetDriver["kind"] {
 		return this.driver.kind;
 	}
 
@@ -78,7 +78,7 @@ export class PresetsStore<T> {
 }
 
 /** Enigma presets. Resolves to the `enigma:presets` key this app has always used. */
-export const presets = new PresetsStore<MachineConfig>('enigma', parseConfig);
+export const presets = new PresetsStore<MachineConfig>("enigma", parseConfig);
 
 /** PURPLE presets, stored separately so names cannot collide across machines. */
-export const purplePresets = new PresetsStore<PurpleKey>('purple', parsePurpleKey);
+export const purplePresets = new PresetsStore<PurpleKey>("purple", parsePurpleKey);

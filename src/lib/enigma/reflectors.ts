@@ -1,13 +1,13 @@
-import { ALPHABET_SIZE, charToIndex } from './alphabet';
+import { ALPHABET_SIZE, charToIndex } from "./alphabet";
 
-export type ReflectorId = 'A' | 'B' | 'C';
+export type ReflectorId = "A" | "B" | "C";
 
 const REFLECTOR_WIRINGS: Record<ReflectorId, string> = {
 	// UKW-A was the original 1930 reflector, withdrawn from service before the
 	// war. Included so the published 1930 test message can be decrypted.
-	A: 'EJMZALYXVBWFCRQUONTSPIKHGD',
-	B: 'YRUHQSLDPXNGOKMIEBFZCWVJAT',
-	C: 'FVPJIAOYEDRZXWGCTKUQSBNMHL'
+	A: "EJMZALYXVBWFCRQUONTSPIKHGD",
+	B: "YRUHQSLDPXNGOKMIEBFZCWVJAT",
+	C: "FVPJIAOYEDRZXWGCTKUQSBNMHL",
 };
 
 export const REFLECTOR_IDS = Object.keys(REFLECTOR_WIRINGS) as ReflectorId[];

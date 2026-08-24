@@ -18,7 +18,7 @@ export interface PresetRecord<T = unknown> {
  * return a typed config would be lying.
  */
 export interface PresetDriver {
-	readonly kind: 'localstorage' | 'tauri-fs';
+	readonly kind: "localstorage" | "tauri-fs";
 	list(namespace: string): Promise<PresetSummary[]>;
 	load(namespace: string, name: string): Promise<PresetRecord | null>;
 	save(namespace: string, name: string, config: unknown): Promise<PresetRecord>;
@@ -28,9 +28,9 @@ export interface PresetDriver {
 export function safeFilename(name: string): string {
 	return (
 		name
-			.replace(/[^A-Za-z0-9 _-]/g, '_')
+			.replace(/[^A-Za-z0-9 _-]/g, "_")
 			.trim()
-			.slice(0, 64) || 'untitled'
+			.slice(0, 64) || "untitled"
 	);
 }
 

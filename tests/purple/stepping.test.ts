@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'vitest';
-import { Purple97, parseKey } from '../../src/lib/purple/machine';
+import { describe, expect, it } from "vitest";
+import { Purple97, parseKey } from "../../src/lib/purple/machine";
 
-const fresh = (key = '1-1,1,1-12') => new Purple97(parseKey(key));
+const fresh = (key = "1-1,1,1-12") => new Purple97(parseKey(key));
 
 /** Positions after n characters, without going through the cipher path. */
 function walk(m: Purple97, n: number): Array<[number, number, number, number]> {
@@ -13,8 +13,8 @@ function walk(m: Purple97, n: number): Array<[number, number, number, number]> {
 	return trace;
 }
 
-describe('PURPLE stepping', () => {
-	it('steps the sixes switch on every character', () => {
+describe("PURPLE stepping", () => {
+	it("steps the sixes switch on every character", () => {
 		const m = fresh();
 		const trace = walk(m, 60);
 		for (const [i, pos] of trace.entries()) {
@@ -22,7 +22,7 @@ describe('PURPLE stepping', () => {
 		}
 	});
 
-	it('steps exactly one twenties switch per character', () => {
+	it("steps exactly one twenties switch per character", () => {
 		const m = fresh();
 		let prev = m.positions;
 		for (let i = 0; i < 2000; i++) {
@@ -34,9 +34,9 @@ describe('PURPLE stepping', () => {
 		}
 	});
 
-	it('runs the fast switch for 24 of every 25 characters early on', () => {
+	it("runs the fast switch for 24 of every 25 characters early on", () => {
 		// fast=1, middle=2 -> twenties index 0 is fast, 1 is middle, 2 is slow.
-		const m = fresh('1-1,1,1-12');
+		const m = fresh("1-1,1,1-12");
 		const trace = walk(m, 25);
 		const fastSteps = trace.filter((p, i) => p[1] !== (i === 0 ? 0 : trace[i - 1][1])).length;
 		expect(fastSteps).toBe(24);
@@ -45,7 +45,7 @@ describe('PURPLE stepping', () => {
 		expect(trace[24][3]).toBe(0);
 	});
 
-	it('fires the slow switch at character 624, not 625', () => {
+	it("fires the slow switch at character 624, not 625", () => {
 		// Independent derivation of the anomaly, not read off the implementation:
 		//   the middle switch steps whenever the pre-step sixes position is 24,
 		//   i.e. at 0-based characters 24, 49, 74 ... 24 + 25k.
@@ -54,7 +54,7 @@ describe('PURPLE stepping', () => {
 		//   position is 23 — character 623 (623 mod 25 == 23).
 		// Under the common misreading (slow fires when sixes AND middle are both
 		// on their last position) this would land on character 624 instead.
-		const m = fresh('1-1,1,1-12');
+		const m = fresh("1-1,1,1-12");
 		let prev = m.positions;
 		const slowSteps: number[] = [];
 		for (let i = 0; i < 700; i++) {
@@ -66,8 +66,8 @@ describe('PURPLE stepping', () => {
 		expect(slowSteps[0]).toBe(623);
 	});
 
-	it('steps the middle switch on the character after the slow switch', () => {
-		const m = fresh('1-1,1,1-12');
+	it("steps the middle switch on the character after the slow switch", () => {
+		const m = fresh("1-1,1,1-12");
 		let prev = m.positions;
 		let slowAt = -1;
 		let middleAfterSlow = false;
@@ -82,9 +82,9 @@ describe('PURPLE stepping', () => {
 		expect(middleAfterSlow).toBe(true);
 	});
 
-	it('honours the fast/middle role assignment from the key', () => {
+	it("honours the fast/middle role assignment from the key", () => {
 		// fast=3, middle=1 -> stage III is fast, stage I is middle, stage II slow.
-		const m = new Purple97(parseKey('1-1,1,1-31'));
+		const m = new Purple97(parseKey("1-1,1,1-31"));
 		expect(m.fastSwitch).toBe(3);
 		expect(m.middleSwitch).toBe(1);
 		expect(m.slowSwitch).toBe(2);
@@ -97,16 +97,16 @@ describe('PURPLE stepping', () => {
 		expect(after[2]).toBe(before[2]);
 	});
 
-	it('starts the switches where the key says', () => {
-		const m = new Purple97(parseKey('9-1,24,6-23'));
+	it("starts the switches where the key says", () => {
+		const m = new Purple97(parseKey("9-1,24,6-23"));
 		expect(m.positions).toEqual([8, 0, 23, 5]);
 		expect(m.fastSwitch).toBe(2);
 		expect(m.middleSwitch).toBe(3);
 		expect(m.slowSwitch).toBe(1);
 	});
 
-	it('wraps every switch at 25 positions', () => {
-		const m = new Purple97(parseKey('25-25,25,25-12'));
+	it("wraps every switch at 25 positions", () => {
+		const m = new Purple97(parseKey("25-25,25,25-12"));
 		expect(m.positions).toEqual([24, 24, 24, 24]);
 		m.step();
 		expect(m.positions[0]).toBe(0);

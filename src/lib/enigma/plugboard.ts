@@ -1,4 +1,4 @@
-import { ALPHABET_SIZE, charToIndex, indexToChar } from './alphabet';
+import { ALPHABET_SIZE, charToIndex, indexToChar } from "./alphabet";
 
 export type PlugPair = [string, string];
 

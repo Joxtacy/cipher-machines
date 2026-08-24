@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { RecentKey } from '$lib/state/tape';
+	import type { RecentKey } from "$lib/state/tape";
 
 	interface Props {
 		recentKeys: RecentKey[];
@@ -9,15 +9,15 @@
 
 	const GROUP = 5;
 
-	let plaintext = $derived(recentKeys.map((k) => k.input).join(''));
-	let ciphertext = $derived(recentKeys.map((k) => k.output).join(''));
+	let plaintext = $derived(recentKeys.map((k) => k.input).join(""));
+	let ciphertext = $derived(recentKeys.map((k) => k.output).join(""));
 
 	function group(s: string): string {
-		return (s.match(new RegExp(`.{1,${GROUP}}`, 'g')) ?? []).join(' ');
+		return (s.match(new RegExp(`.{1,${GROUP}}`, "g")) ?? []).join(" ");
 	}
 
 	function copy(s: string) {
-		if (typeof navigator !== 'undefined' && navigator.clipboard) {
+		if (typeof navigator !== "undefined" && navigator.clipboard) {
 			void navigator.clipboard.writeText(s);
 		}
 	}
@@ -32,7 +32,7 @@
 	<div class="line">
 		<div class="label">Plain</div>
 		<button type="button" class="text" title="Copy plaintext" onclick={() => copy(plaintext)}>
-			{group(plaintext) || '·'}
+			{group(plaintext) || "·"}
 		</button>
 	</div>
 	<div class="line">
@@ -43,7 +43,7 @@
 			title="Copy ciphertext"
 			onclick={() => copy(ciphertext)}
 		>
-			{group(ciphertext) || '·'}
+			{group(ciphertext) || "·"}
 		</button>
 	</div>
 </div>

@@ -1,4 +1,4 @@
-export const A_CODE = 'A'.charCodeAt(0);
+export const A_CODE = "A".charCodeAt(0);
 export const ALPHABET_SIZE = 26;
 
 export function charToIndex(c: string): number {
@@ -22,6 +22,6 @@ export function isLetter(c: string): boolean {
 	const i = c.charCodeAt(0);
 	return (
 		(i >= A_CODE && i < A_CODE + ALPHABET_SIZE) ||
-		(i >= 'a'.charCodeAt(0) && i < 'a'.charCodeAt(0) + ALPHABET_SIZE)
+		(i >= "a".charCodeAt(0) && i < "a".charCodeAt(0) + ALPHABET_SIZE)
 	);
 }

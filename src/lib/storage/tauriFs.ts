@@ -1,7 +1,7 @@
-import type { PresetDriver, PresetRecord, PresetSummary } from './driver';
-import { safeFilename, safeNamespace } from './driver';
+import type { PresetDriver, PresetRecord, PresetSummary } from "./driver";
+import { safeFilename, safeNamespace } from "./driver";
 
-const PRESETS_ROOT = 'presets';
+const PRESETS_ROOT = "presets";
 
 /** One subdirectory per machine: presets/enigma, presets/purple. */
 function dirFor(namespace: string): string {
@@ -9,7 +9,7 @@ function dirFor(namespace: string): string {
 }
 
 async function ensureDir(namespace: string): Promise<string> {
-	const { mkdir, exists, BaseDirectory } = await import('@tauri-apps/plugin-fs');
+	const { mkdir, exists, BaseDirectory } = await import("@tauri-apps/plugin-fs");
 	const dir = dirFor(namespace);
 	if (!(await exists(dir, { baseDir: BaseDirectory.AppData }))) {
 		await mkdir(dir, { baseDir: BaseDirectory.AppData, recursive: true });
@@ -22,15 +22,15 @@ function fileFor(namespace: string, name: string): string {
 }
 
 export const tauriFsDriver: PresetDriver = {
-	kind: 'tauri-fs',
+	kind: "tauri-fs",
 
 	async list(namespace): Promise<PresetSummary[]> {
-		const { readDir, BaseDirectory, stat } = await import('@tauri-apps/plugin-fs');
+		const { readDir, BaseDirectory, stat } = await import("@tauri-apps/plugin-fs");
 		const dir = await ensureDir(namespace);
 		const entries = await readDir(dir, { baseDir: BaseDirectory.AppData });
 		const summaries: PresetSummary[] = [];
 		for (const entry of entries) {
-			if (!entry.isFile || !entry.name?.endsWith('.json')) continue;
+			if (!entry.isFile || !entry.name?.endsWith(".json")) continue;
 			const fullPath = `${dir}/${entry.name}`;
 			let updatedAt = 0;
 			try {
@@ -39,13 +39,13 @@ export const tauriFsDriver: PresetDriver = {
 			} catch {
 				/* ignore */
 			}
-			summaries.push({ name: entry.name.replace(/\.json$/, ''), updatedAt });
+			summaries.push({ name: entry.name.replace(/\.json$/, ""), updatedAt });
 		}
 		return summaries.sort((a, b) => b.updatedAt - a.updatedAt);
 	},
 
 	async load(namespace, name): Promise<PresetRecord | null> {
-		const { readTextFile, BaseDirectory, exists } = await import('@tauri-apps/plugin-fs');
+		const { readTextFile, BaseDirectory, exists } = await import("@tauri-apps/plugin-fs");
 		await ensureDir(namespace);
 		const path = fileFor(namespace, name);
 		if (!(await exists(path, { baseDir: BaseDirectory.AppData }))) return null;
@@ -55,7 +55,7 @@ export const tauriFsDriver: PresetDriver = {
 	},
 
 	async save(namespace, name, config): Promise<PresetRecord> {
-		const { writeTextFile, BaseDirectory } = await import('@tauri-apps/plugin-fs');
+		const { writeTextFile, BaseDirectory } = await import("@tauri-apps/plugin-fs");
 		await ensureDir(namespace);
 		const updatedAt = Date.now();
 		const payload = JSON.stringify({ name, config, updatedAt }, null, 2);
@@ -64,10 +64,10 @@ export const tauriFsDriver: PresetDriver = {
 	},
 
 	async remove(namespace, name): Promise<void> {
-		const { remove, BaseDirectory, exists } = await import('@tauri-apps/plugin-fs');
+		const { remove, BaseDirectory, exists } = await import("@tauri-apps/plugin-fs");
 		const path = fileFor(namespace, name);
 		if (await exists(path, { baseDir: BaseDirectory.AppData })) {
 			await remove(path, { baseDir: BaseDirectory.AppData });
 		}
-	}
+	},
 };

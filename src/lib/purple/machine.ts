@@ -3,8 +3,8 @@ import {
 	SWITCH_POSITIONS,
 	TWENTIES_LEVELS,
 	decryptTables,
-	encryptTables
-} from './data';
+	encryptTables,
+} from "./data";
 
 /**
  * PURPLE — the Japanese Type B Cipher Machine (Angooki Taipu B), 1939.
@@ -27,15 +27,15 @@ export class SteppingSwitch {
 	constructor(
 		private readonly decWiring: readonly (readonly number[])[],
 		private readonly encWiring: readonly (readonly number[])[],
-		position = 0
+		position = 0,
 	) {
 		this.positions = decWiring.length;
 		this.levels = decWiring[0].length;
 		if (!decWiring.every((row) => row.length === this.levels)) {
-			throw new Error('Ragged decrypt wiring table');
+			throw new Error("Ragged decrypt wiring table");
 		}
 		if (encWiring.length !== this.positions) {
-			throw new Error('Encrypt/decrypt position count mismatch');
+			throw new Error("Encrypt/decrypt position count mismatch");
 		}
 		this.position = 0;
 		this.setPosition(position);
@@ -82,16 +82,16 @@ export interface PurpleKey {
  * earlier RED machine; on PURPLE the group was set by the daily key and rotated
  * every nine days.
  */
-export const STRAIGHT_PLUGBOARD = 'AEIOUYBCDFGHJKLMNPQRSTVWXZ';
+export const STRAIGHT_PLUGBOARD = "AEIOUYBCDFGHJKLMNPQRSTVWXZ";
 
 /** Marks a garble in intercepted traffic: passed through, but still steps. */
-export const GARBLE = '-';
+export const GARBLE = "-";
 
 export const DEFAULT_KEY: PurpleKey = {
 	switches: [0, 0, 0, 0],
 	fastSwitch: 1,
 	middleSwitch: 2,
-	alphabet: STRAIGHT_PLUGBOARD
+	alphabet: STRAIGHT_PLUGBOARD,
 };
 
 /** True if `s` is a usable daily alphabet: 26 distinct letters. */
@@ -110,10 +110,10 @@ export function validateAlphabet(alphabet: string): string {
 		throw new Error(`Alphabet must be 26 letters, got ${upper.length}`);
 	}
 	if (!/^[A-Z]{26}$/.test(upper)) {
-		throw new Error('Alphabet must contain only the letters A-Z');
+		throw new Error("Alphabet must contain only the letters A-Z");
 	}
 	if (new Set(upper).size !== 26) {
-		throw new Error('Alphabet must contain each letter exactly once');
+		throw new Error("Alphabet must contain each letter exactly once");
 	}
 	return upper;
 }
@@ -161,16 +161,16 @@ function isRole(v: unknown): v is SwitchRole {
  * nothing reaches the machine unchecked.
  */
 export function parsePurpleKey(raw: unknown): PurpleKey {
-	if (typeof raw !== 'object' || raw === null) throw new Error('Key must be an object');
+	if (typeof raw !== "object" || raw === null) throw new Error("Key must be an object");
 	const k = raw as Record<string, unknown>;
 
 	if (!Array.isArray(k.switches) || k.switches.length !== 4) {
-		throw new Error('switches must be an array of 4 positions');
+		throw new Error("switches must be an array of 4 positions");
 	}
 	const switches = k.switches.map((v, i) => {
-		if (typeof v !== 'number' || !Number.isInteger(v) || v < 0 || v >= SWITCH_POSITIONS) {
+		if (typeof v !== "number" || !Number.isInteger(v) || v < 0 || v >= SWITCH_POSITIONS) {
 			throw new Error(
-				`switches[${i}] must be an integer 0-${SWITCH_POSITIONS - 1}, got ${JSON.stringify(v)}`
+				`switches[${i}] must be an integer 0-${SWITCH_POSITIONS - 1}, got ${JSON.stringify(v)}`,
 			);
 		}
 		return v;
@@ -185,13 +185,13 @@ export function parsePurpleKey(raw: unknown): PurpleKey {
 	if (k.fastSwitch === k.middleSwitch) {
 		throw new Error(`fastSwitch and middleSwitch cannot both be ${k.fastSwitch}`);
 	}
-	if (typeof k.alphabet !== 'string') throw new Error('alphabet must be a string');
+	if (typeof k.alphabet !== "string") throw new Error("alphabet must be a string");
 
 	return {
 		switches,
 		fastSwitch: k.fastSwitch,
 		middleSwitch: k.middleSwitch,
-		alphabet: validateAlphabet(k.alphabet)
+		alphabet: validateAlphabet(k.alphabet),
 	};
 }
 
@@ -210,7 +210,7 @@ export class Purple97 {
 	constructor(key: PurpleKey = DEFAULT_KEY) {
 		const { switches, fastSwitch, middleSwitch } = key;
 
-		if (switches.length !== 4) throw new Error('Expected 4 switch positions');
+		if (switches.length !== 4) throw new Error("Expected 4 switch positions");
 		if (fastSwitch === middleSwitch) {
 			throw new Error(`Fast and middle switch cannot both be ${fastSwitch}`);
 		}
@@ -221,7 +221,7 @@ export class Purple97 {
 		this.fastSwitch = fastSwitch;
 		this.middleSwitch = middleSwitch;
 		this.slowSwitch = ([1, 2, 3] as SwitchRole[]).find(
-			(r) => r !== fastSwitch && r !== middleSwitch
+			(r) => r !== fastSwitch && r !== middleSwitch,
 		)!;
 
 		const dec = decryptTables();
@@ -230,7 +230,7 @@ export class Purple97 {
 		this.twenties = [
 			new SteppingSwitch(dec[1], enc[1], switches[1]),
 			new SteppingSwitch(dec[2], enc[2], switches[2]),
-			new SteppingSwitch(dec[3], enc[3], switches[3])
+			new SteppingSwitch(dec[3], enc[3], switches[3]),
 		];
 
 		this.alphabet = validateAlphabet(key.alphabet);
@@ -243,7 +243,7 @@ export class Purple97 {
 			this.sixes.position,
 			this.twenties[0].position,
 			this.twenties[1].position,
-			this.twenties[2].position
+			this.twenties[2].position,
 		];
 	}
 
@@ -330,13 +330,13 @@ export class Purple97 {
 	}
 
 	encrypt(plaintext: string): string {
-		let out = '';
+		let out = "";
 		for (const c of plaintext) out += this.encryptChar(c);
 		return out;
 	}
 
 	decrypt(ciphertext: string): string {
-		let out = '';
+		let out = "";
 		for (const c of ciphertext) out += this.decryptChar(c);
 		return out;
 	}

@@ -6,16 +6,16 @@ import {
 	parsePurpleKey,
 	validateAlphabet,
 	type PurpleKey,
-	type SwitchRole
-} from '$lib/purple/machine';
-import type { RecentKey } from './tape';
+	type SwitchRole,
+} from "$lib/purple/machine";
+import type { RecentKey } from "./tape";
 
-export type PurpleMode = 'encrypt' | 'decrypt';
+export type PurpleMode = "encrypt" | "decrypt";
 
 /** Index into the switch array: 0 is the sixes, 1-3 are twenties stages I-III. */
 export type SwitchSlot = 0 | 1 | 2 | 3;
 
-export const SWITCH_LABELS = ['Sixes', 'I', 'II', 'III'] as const;
+export const SWITCH_LABELS = ["Sixes", "I", "II", "III"] as const;
 
 /**
  * Reactive state for the PURPLE machine.
@@ -33,7 +33,7 @@ export class PurpleStore {
 	fastSwitch: SwitchRole = $state(DEFAULT_KEY.fastSwitch);
 	middleSwitch: SwitchRole = $state(DEFAULT_KEY.middleSwitch);
 	alphabet: string = $state(DEFAULT_KEY.alphabet);
-	mode: PurpleMode = $state('encrypt');
+	mode: PurpleMode = $state("encrypt");
 	recentKeys: RecentKey[] = $state([]);
 	lastOutput: string | null = $state(null);
 
@@ -49,7 +49,7 @@ export class PurpleStore {
 	/** The remaining stage, derived rather than stored so it cannot go stale. */
 	get slowSwitch(): SwitchRole {
 		return ([1, 2, 3] as SwitchRole[]).find(
-			(r) => r !== this.fastSwitch && r !== this.middleSwitch
+			(r) => r !== this.fastSwitch && r !== this.middleSwitch,
 		)!;
 	}
 
@@ -58,7 +58,7 @@ export class PurpleStore {
 			switches: [...this.switches] as [number, number, number, number],
 			fastSwitch: this.fastSwitch,
 			middleSwitch: this.middleSwitch,
-			alphabet: this.alphabet
+			alphabet: this.alphabet,
 		};
 	}
 
@@ -72,7 +72,7 @@ export class PurpleStore {
 		const isGarble = upper === GARBLE;
 		if (!isGarble && !/^[A-Z]$/.test(upper)) return null;
 		// A garble marker only means something when reading an intercept.
-		if (isGarble && this.mode !== 'decrypt') return null;
+		if (isGarble && this.mode !== "decrypt") return null;
 
 		// Latch the message's starting positions before anything advances.
 		if (this.recentKeys.length === 0) {
@@ -80,7 +80,7 @@ export class PurpleStore {
 		}
 
 		const machine = new Purple97(this.snapshot());
-		const out = this.mode === 'encrypt' ? machine.encryptChar(upper) : machine.decryptChar(upper);
+		const out = this.mode === "encrypt" ? machine.encryptChar(upper) : machine.decryptChar(upper);
 
 		this.switches = [...machine.positions] as [number, number, number, number];
 		this.lastOutput = out;
@@ -101,8 +101,8 @@ export class PurpleStore {
 	 * picking a stage that already holds the other role swaps them rather than
 	 * leaving the machine in an impossible state.
 	 */
-	setRole(role: 'fast' | 'middle', stage: SwitchRole): void {
-		if (role === 'fast') {
+	setRole(role: "fast" | "middle", stage: SwitchRole): void {
+		if (role === "fast") {
 			if (this.middleSwitch === stage) this.middleSwitch = this.fastSwitch;
 			this.fastSwitch = stage;
 		} else {
@@ -152,7 +152,7 @@ export class PurpleStore {
 
 	reset(): void {
 		this.loadConfig(DEFAULT_KEY);
-		this.mode = 'encrypt';
+		this.mode = "encrypt";
 	}
 }
 

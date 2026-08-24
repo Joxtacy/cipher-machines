@@ -1,15 +1,15 @@
 <script lang="ts">
-	import '$lib/theme/tokens.css';
-	import '$lib/theme/skeuomorphic.css';
-	import '$lib/styles/global.css';
-	import favicon from '$lib/assets/favicon.svg';
-	import { page } from '$app/state';
+	import "$lib/theme/tokens.css";
+	import "$lib/theme/skeuomorphic.css";
+	import "$lib/styles/global.css";
+	import favicon from "$lib/assets/favicon.svg";
+	import { page } from "$app/state";
 
 	let { children } = $props();
 
 	const machines = [
-		{ href: '/', label: 'Enigma', sub: 'Wehrmacht I' },
-		{ href: '/purple', label: 'PURPLE', sub: 'Type B' }
+		{ href: "/", label: "Enigma", sub: "Wehrmacht I" },
+		{ href: "/purple", label: "PURPLE", sub: "Type B" },
 	];
 </script>
 
@@ -20,7 +20,7 @@
 
 <nav aria-label="Machine">
 	{#each machines as m (m.href)}
-		<a href={m.href} aria-current={page.url.pathname === m.href ? 'page' : undefined}>
+		<a href={m.href} aria-current={page.url.pathname === m.href ? "page" : undefined}>
 			<span class="label">{m.label}</span>
 			<span class="sub">{m.sub}</span>
 		</a>
@@ -56,7 +56,7 @@
 		color: var(--brand-text);
 	}
 
-	a[aria-current='page'] {
+	a[aria-current="page"] {
 		color: var(--brand-text);
 		border-color: var(--accent-strong);
 	}

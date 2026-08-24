@@ -1,6 +1,6 @@
 <script lang="ts" generics="T">
-	import { onMount } from 'svelte';
-	import type { PresetsStore } from '$lib/state/presets.svelte';
+	import { onMount } from "svelte";
+	import type { PresetsStore } from "$lib/state/presets.svelte";
 
 	interface Props {
 		/** The machine's preset store, already namespaced and validated. */
@@ -13,7 +13,7 @@
 
 	let { presets, snapshot, onLoad }: Props = $props();
 
-	let newName = $state('');
+	let newName = $state("");
 	let storageKind = $derived(presets.kind);
 
 	onMount(() => {
@@ -24,7 +24,7 @@
 		const name = newName.trim();
 		if (!name) return;
 		await presets.save(name, snapshot());
-		newName = '';
+		newName = "";
 	}
 
 	async function loadPreset(name: string) {
@@ -37,11 +37,11 @@
 	}
 
 	function fmt(ts: number): string {
-		if (!ts) return '';
+		if (!ts) return "";
 		try {
 			return new Date(ts).toLocaleString();
 		} catch {
-			return '';
+			return "";
 		}
 	}
 </script>
@@ -51,11 +51,11 @@
 		<h3>Presets</h3>
 		<span
 			class="kind"
-			title={storageKind === 'tauri-fs'
-				? 'Stored as files in app data dir'
-				: 'Stored in localStorage'}
+			title={storageKind === "tauri-fs"
+				? "Stored as files in app data dir"
+				: "Stored in localStorage"}
 		>
-			{storageKind === 'tauri-fs' ? 'desktop fs' : 'browser'}
+			{storageKind === "tauri-fs" ? "desktop fs" : "browser"}
 		</span>
 	</header>
 

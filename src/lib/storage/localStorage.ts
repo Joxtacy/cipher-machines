@@ -1,5 +1,5 @@
-import type { PresetDriver, PresetRecord, PresetSummary } from './driver';
-import { safeNamespace } from './driver';
+import type { PresetDriver, PresetRecord, PresetSummary } from "./driver";
+import { safeNamespace } from "./driver";
 
 interface Stored {
 	[name: string]: { config: unknown; updatedAt: number };
@@ -14,24 +14,24 @@ function keyFor(namespace: string): string {
 }
 
 function read(namespace: string): Stored {
-	if (typeof localStorage === 'undefined') return {};
+	if (typeof localStorage === "undefined") return {};
 	const raw = localStorage.getItem(keyFor(namespace));
 	if (!raw) return {};
 	try {
 		const parsed = JSON.parse(raw);
-		return parsed && typeof parsed === 'object' ? (parsed as Stored) : {};
+		return parsed && typeof parsed === "object" ? (parsed as Stored) : {};
 	} catch {
 		return {};
 	}
 }
 
 function write(namespace: string, s: Stored): void {
-	if (typeof localStorage === 'undefined') return;
+	if (typeof localStorage === "undefined") return;
 	localStorage.setItem(keyFor(namespace), JSON.stringify(s));
 }
 
 export const localStorageDriver: PresetDriver = {
-	kind: 'localstorage',
+	kind: "localstorage",
 
 	async list(namespace): Promise<PresetSummary[]> {
 		return Object.entries(read(namespace))
@@ -57,5 +57,5 @@ export const localStorageDriver: PresetDriver = {
 		const s = read(namespace);
 		delete s[name];
 		write(namespace, s);
-	}
+	},
 };

@@ -2,7 +2,7 @@
  * Skeuomorphic theme — wood, brass, glow.
  * Activated via <html data-theme="skeuo">.
  */
-[data-theme='skeuo'] {
+[data-theme="skeuo"] {
 	--enigma-bg: #1c140d;
 	--chassis: #523a26;
 	--chassis-edge: #2b1c11;

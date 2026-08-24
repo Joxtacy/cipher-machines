@@ -57,7 +57,7 @@
 	--danger: #c44b3a;
 
 	/* Typography */
-	--font-stack-display: 'Cormorant Garamond', 'Times New Roman', serif;
-	--font-stack-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
-	--font-stack-ui: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-stack-display: "Cormorant Garamond", "Times New Roman", serif;
+	--font-stack-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+	--font-stack-ui: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }

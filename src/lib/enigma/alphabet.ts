@@ -20,6 +20,8 @@ export function mod26(n: number): number {
 export function isLetter(c: string): boolean {
 	if (c.length !== 1) return false;
 	const i = c.charCodeAt(0);
-	return (i >= A_CODE && i < A_CODE + ALPHABET_SIZE) ||
-		(i >= 'a'.charCodeAt(0) && i < 'a'.charCodeAt(0) + ALPHABET_SIZE);
+	return (
+		(i >= A_CODE && i < A_CODE + ALPHABET_SIZE) ||
+		(i >= 'a'.charCodeAt(0) && i < 'a'.charCodeAt(0) + ALPHABET_SIZE)
+	);
 }

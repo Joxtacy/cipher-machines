@@ -37,23 +37,29 @@
 	</div>
 	<div class="line">
 		<div class="label">Cipher</div>
-		<button type="button" class="text cipher" title="Copy ciphertext" onclick={() => copy(ciphertext)}>
+		<button
+			type="button"
+			class="text cipher"
+			title="Copy ciphertext"
+			onclick={() => copy(ciphertext)}
+		>
 			{group(ciphertext) || '·'}
 		</button>
 	</div>
 </div>
 
 <style>
-
-
-
 	.count {
 		font-family: var(--font-stack-mono);
 		font-size: 0.75rem;
 		color: var(--muted);
 	}
 
-	.line { display: flex; flex-direction: column; gap: 0.15rem; }
+	.line {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
 
 	.label {
 		font-size: 0.65rem;
@@ -80,7 +86,11 @@
 		transition: border-color 80ms ease;
 	}
 
-	.text:hover { border-color: var(--accent); }
+	.text:hover {
+		border-color: var(--accent);
+	}
 
-	.cipher { color: var(--accent-strong); }
+	.cipher {
+		color: var(--accent-strong);
+	}
 </style>

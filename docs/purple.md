@@ -30,14 +30,14 @@ predecessor was Type A, which Allied codebreakers called RED; Type B they called
 
 ### Not a rotor machine
 
-| | Enigma | PURPLE |
-|---|---|---|
-| Mechanism | 3 rotating wired discs | 4 telephone **stepping switches** |
-| Alphabet | one 26-letter path | split **6 + 20**, separate paths |
-| Reciprocal? | yes, via the reflector | **no** |
-| Letter to itself? | never | **possible** |
-| Output | 26 lamps | printing typewriter |
-| Key material | rotor order, rings, plugboard | daily alphabet, 4 switch positions, speed assignment |
+|                   | Enigma                        | PURPLE                                               |
+| ----------------- | ----------------------------- | ---------------------------------------------------- |
+| Mechanism         | 3 rotating wired discs        | 4 telephone **stepping switches**                    |
+| Alphabet          | one 26-letter path            | split **6 + 20**, separate paths                     |
+| Reciprocal?       | yes, via the reflector        | **no**                                               |
+| Letter to itself? | never                         | **possible**                                         |
+| Output            | 26 lamps                      | printing typewriter                                  |
+| Key material      | rotor order, rings, plugboard | daily alphabet, 4 switch positions, speed assignment |
 
 A **stepping switch** (or uniselector) is a telephone-exchange part: a wiper arm
 sweeping a semicircle of contacts, advanced one contact at a time by an
@@ -77,7 +77,7 @@ exactly the crib Bletchley built its attacks on.
 
 PURPLE made the opposite trade. Deciphering runs the twenties chain in the
 **reverse stage order**, so encipher and decipher are genuinely different
-operations and the machine needs a mode switch. In exchange, a letter *can*
+operations and the machine needs a mode switch. In exchange, a letter _can_
 encipher to itself, and the no-fixed-point crib simply does not exist.
 
 That is a real cryptographic improvement over Enigma. PURPLE was broken anyway —
@@ -100,7 +100,7 @@ With positions numbered 1–25:
 
 That third rule is worth staring at, because it is commonly written down wrong
 (including on Wikipedia, which says the slow switch fires when the sixes and
-middle switches are *both* at 25). The difference only shows up around character
+middle switches are _both_ at 25). The difference only shows up around character
 624, so a wrong implementation looks perfect on any short message. It is
 PURPLE's counterpart to Enigma's double-stepping anomaly.
 
@@ -175,11 +175,11 @@ out. When you are deciphering, that means your recovered plaintext is on the
 
 ### Message, rewind and reset
 
-| Button | Dials | Alphabet & speeds | Tape |
-|---|---|---|---|
-| **Rewind to NN NN NN NN** | back to where this message began | untouched | cleared |
-| **New message** | left where they are | untouched | cleared |
-| **Reset machine** | back to `01` | back to defaults | cleared |
+| Button                    | Dials                            | Alphabet & speeds | Tape    |
+| ------------------------- | -------------------------------- | ----------------- | ------- |
+| **Rewind to NN NN NN NN** | back to where this message began | untouched         | cleared |
+| **New message**           | left where they are              | untouched         | cleared |
+| **Reset machine**         | back to `01`                     | back to defaults  | cleared |
 
 Mode is left alone by Rewind: direction is an operator choice, not key material.
 
@@ -211,7 +211,7 @@ left as it was.
 
 5. To decipher it back: click **Rewind to 01 01 01 01**, switch to **Decipher**, and type `QWBKBVYATJ`. The **Cipher** line reads `MEMORANDUM`.
 
-> **Getting the dials back.** Use **Rewind** in the *Message* group — it winds all
+> **Getting the dials back.** Use **Rewind** in the _Message_ group — it winds all
 > four dials to where the message started and clears the tape, while keeping the
 > daily alphabet and the speed assignment. **Reset machine** would also reset the
 > alphabet, which is the classic way to end up with correct dials and the wrong
@@ -223,7 +223,7 @@ left as it was.
 ### Tips
 
 - **Watch the partition.** Type letters from the sixes group (`NOKTYU` with the alphabet above) and the output is always one of those six. Type anything else and the output is never one of them.
-- **See the non-reciprocity.** Encipher a word, then encipher the *ciphertext* from the same starting position. On Enigma that returns the plaintext; here it returns nothing useful. You must switch to Decipher.
+- **See the non-reciprocity.** Encipher a word, then encipher the _ciphertext_ from the same starting position. On Enigma that returns the plaintext; here it returns nothing useful. You must switch to Decipher.
 - **A letter can encipher to itself.** Type a long run of one letter and it will eventually come out unchanged. On Enigma that is impossible, and that impossibility is what sank it.
 - **Find the slow switch.** Set fast **I** / middle **II**, watch stage **III**, and hold down a letter. It sits still for 623 characters and moves on the 624th.
 
@@ -232,7 +232,7 @@ left as it was.
 ## References
 
 - [Wikipedia — Type B Cipher Machine](https://en.wikipedia.org/wiki/Type_B_Cipher_Machine)
-- [Freeman, Sullivan & Weierud, "PURPLE Revealed: Simulation and Computer-aided Cryptanalysis of Angooki Taipu B", *Cryptologia* 27(1), 2003](https://cryptocellar.org/pubs/purple-revealed.pdf) — the reconstructed wiring, keying procedure, and the 14-part message
+- [Freeman, Sullivan & Weierud, "PURPLE Revealed: Simulation and Computer-aided Cryptanalysis of Angooki Taipu B", _Cryptologia_ 27(1), 2003](https://cryptocellar.org/pubs/purple-revealed.pdf) — the reconstructed wiring, keying procedure, and the 14-part message
 - [Frode Weierud's CryptoCellar — PURPLE machine](https://cryptocellar.org/simula/purple/index.html)
 - [Wikipedia — 14-part message](https://en.wikipedia.org/wiki/14-part_message)
 - `docs/purple-plan.md` — implementation notes, including the two stepping traps

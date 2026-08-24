@@ -1,0 +1,10 @@
+node_modules
+/build
+/.svelte-kit
+/src-tauri/target
+/src-tauri/gen
+
+# Lockfiles and generated manifests
+pnpm-lock.yaml
+package-lock.json
+/src-tauri/Cargo.lock

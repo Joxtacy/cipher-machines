@@ -9,11 +9,7 @@ function snapshot(e: Enigma): string {
 const cfg = (positions: [string, string, string]): MachineConfig => ({
 	rotors: ['I', 'II', 'III'],
 	rings: [0, 0, 0],
-	positions: [
-		charToIndex(positions[0]),
-		charToIndex(positions[1]),
-		charToIndex(positions[2])
-	],
+	positions: [charToIndex(positions[0]), charToIndex(positions[1]), charToIndex(positions[2])],
 	reflector: 'B',
 	plugboard: []
 });
@@ -48,10 +44,14 @@ describe('Enigma stepping', () => {
 		// Walking up to the double step from ADU shows the classic pattern:
 		// ADU → ADV → AEW → BFX → BFY (middle steps twice in a row).
 		const e = new Enigma(cfg(['A', 'D', 'U']));
-		e.encryptChar('X'); expect(snapshot(e)).toBe('ADV');
-		e.encryptChar('X'); expect(snapshot(e)).toBe('AEW');
-		e.encryptChar('X'); expect(snapshot(e)).toBe('BFX');
-		e.encryptChar('X'); expect(snapshot(e)).toBe('BFY');
+		e.encryptChar('X');
+		expect(snapshot(e)).toBe('ADV');
+		e.encryptChar('X');
+		expect(snapshot(e)).toBe('AEW');
+		e.encryptChar('X');
+		expect(snapshot(e)).toBe('BFX');
+		e.encryptChar('X');
+		expect(snapshot(e)).toBe('BFY');
 	});
 
 	it('has period 26 × 25 × 26 = 16,900 (not 26³) because of double stepping', () => {

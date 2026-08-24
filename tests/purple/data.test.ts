@@ -31,7 +31,10 @@ describe('PURPLE wiring tables', () => {
 	it.each(cases)('%s: every position is a permutation, 1-based', (_name, table, levels) => {
 		const expected = Array.from({ length: levels }, (_, i) => i + 1);
 		for (const [i, row] of table.entries()) {
-			expect([...row].sort((a, b) => a - b), `position ${i + 1}`).toEqual(expected);
+			expect(
+				[...row].sort((a, b) => a - b),
+				`position ${i + 1}`
+			).toEqual(expected);
 		}
 	});
 

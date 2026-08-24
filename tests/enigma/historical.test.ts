@@ -24,8 +24,16 @@ const cfg: MachineConfig = {
 	positions: [charToIndex('B'), charToIndex('L'), charToIndex('A')],
 	reflector: 'B',
 	plugboard: [
-		['A', 'V'], ['B', 'S'], ['C', 'G'], ['D', 'L'], ['F', 'U'],
-		['H', 'Z'], ['I', 'N'], ['K', 'M'], ['O', 'W'], ['R', 'X']
+		['A', 'V'],
+		['B', 'S'],
+		['C', 'G'],
+		['D', 'L'],
+		['F', 'U'],
+		['H', 'Z'],
+		['I', 'N'],
+		['K', 'M'],
+		['O', 'W'],
+		['R', 'X']
 	]
 };
 
@@ -38,16 +46,21 @@ const M1930: MachineConfig = {
 	rings: [23, 12, 21],
 	positions: [5, 14, 11],
 	reflector: 'A',
-	plugboard: [['A', 'M'], ['F', 'I'], ['N', 'V'], ['P', 'S'], ['T', 'U'], ['W', 'Z']]
+	plugboard: [
+		['A', 'M'],
+		['F', 'I'],
+		['N', 'V'],
+		['P', 'S'],
+		['T', 'U'],
+		['W', 'Z']
+	]
 };
 
 const M1930_CIPHERTEXT =
-	'GCDSEAHUGWTQGRKVLFGXUCALXVYMIGMMNMFDXTGNVHVRMMEVOUYFZSLRHDRRXFJWC' +
-	'FHUHMUNZEFRDISIKBGPMYVXUZ';
+	'GCDSEAHUGWTQGRKVLFGXUCALXVYMIGMMNMFDXTGNVHVRMMEVOUYFZSLRHDRRXFJWC' + 'FHUHMUNZEFRDISIKBGPMYVXUZ';
 
 const M1930_PLAINTEXT =
-	'FEINDLIQEINFANTERIEKOLONNEBEOBAQTETXANFANGSUEDAUSGANGBAERWALDEXEN' +
-	'DEDREIKMOSTWAERTSNEUSTADT';
+	'FEINDLIQEINFANTERIEKOLONNEBEOBAQTETXANFANGSUEDAUSGANGBAERWALDEXEN' + 'DEDREIKMOSTWAERTSNEUSTADT';
 
 describe('historical message', () => {
 	it('decrypts Operation Barbarossa 1941, part 1', () => {

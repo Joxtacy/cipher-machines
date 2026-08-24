@@ -30,7 +30,9 @@ describe('PurpleStore', () => {
 		const s = new PurpleStore();
 		s.loadConfig(parseKey(PART1_KEY, PART1_ALPHABET));
 		s.setMode('decrypt');
-		expect(type(s, PART1_CIPHERTEXT.slice(0, 45))).toBe('FOVTATAKIDASINIMUIMINOMOXIWOIRUBESIFYXXFCKZZR'.slice(0, 45));
+		expect(type(s, PART1_CIPHERTEXT.slice(0, 45))).toBe(
+			'FOVTATAKIDASINIMUIMINOMOXIWOIRUBESIFYXXFCKZZR'.slice(0, 45)
+		);
 	});
 
 	it('syncs all four switch positions back after each key', () => {

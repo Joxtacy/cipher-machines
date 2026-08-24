@@ -7,18 +7,18 @@ with both ciphertext and plaintext to test against.
 ## What PURPLE actually is
 
 "PURPLE" is the US codename for the Japanese Foreign Ministry's **Type B Cipher
-Machine** (*97-shiki ōbun inji-ki*, *Angooki Taipu B*), in service from 1939.
+Machine** (_97-shiki ōbun inji-ki_, _Angooki Taipu B_), in service from 1939.
 
 It is **not** a rotor machine. Almost nothing from our Enigma engine transfers:
 
-| | Enigma | PURPLE |
-|---|---|---|
-| Mechanism | 3 rotating wired discs | 4 telephone **stepping switches** (uniselectors) |
-| Alphabet | one 26-letter path | split into **6 letters + 20 letters**, enciphered separately |
-| Reciprocal? | Yes — reflector | **No.** Separate encipher/decipher paths |
-| Letter → itself? | Never (the fatal weakness) | **Possible** — no reflector, so no such crib |
-| Stepping | odometer + double-step anomaly | one of three switches steps per character, driven by a fourth |
-| Key material | rotor order, rings, plugboard | daily alphabet, 4 switch positions, fast/middle/slow assignment |
+|                  | Enigma                         | PURPLE                                                          |
+| ---------------- | ------------------------------ | --------------------------------------------------------------- |
+| Mechanism        | 3 rotating wired discs         | 4 telephone **stepping switches** (uniselectors)                |
+| Alphabet         | one 26-letter path             | split into **6 letters + 20 letters**, enciphered separately    |
+| Reciprocal?      | Yes — reflector                | **No.** Separate encipher/decipher paths                        |
+| Letter → itself? | Never (the fatal weakness)     | **Possible** — no reflector, so no such crib                    |
+| Stepping         | odometer + double-step anomaly | one of three switches steps per character, driven by a fourth   |
+| Key material     | rotor order, rings, plugboard  | daily alphabet, 4 switch positions, fast/middle/slow assignment |
 
 The 6/20 split is the defining feature, inherited from the earlier RED machine
 (Type A). In RED the "sixes" were permanently the vowels `AEIOUY`; in PURPLE the
@@ -42,7 +42,7 @@ keyboard ──► input     ┌─► sixes switch (25 pos) ──┴──┐ 
 - **Sixes switch** — 6 layers, 25 positions. Each position is a permutation of the 6 sixes letters.
 - **Twenties stages S1, S2, S3** — each 20 layers × 25 positions, in series. Each position is a permutation of the 20 twenties letters.
 - **Output plugboard** — inverse of the input permutation.
-- **Direction matters**: deciphering runs the twenties chain in the *opposite* stage order to enciphering. There is no reflector to make the two identical.
+- **Direction matters**: deciphering runs the twenties chain in the _opposite_ stage order to enciphering. There is no reflector to make the two identical.
 
 ### Stepping
 
@@ -62,7 +62,7 @@ else                                      → fast steps
 ## Two traps
 
 These are the PURPLE equivalent of Enigma's double-stepping anomaly, and both
-are the kind of bug that produces *correct output for hundreds of characters*
+are the kind of bug that produces _correct output for hundreds of characters_
 before drifting.
 
 **1. The slow switch fires one step early.** Wikipedia's prose says the slow
@@ -71,11 +71,11 @@ is too. The working reference implementation instead fires the slow switch when
 sixes is at the **24th** position (`23`) and middle is at the 25th — and the
 middle switch then steps on the following character. These differ, and the
 window where they disagree comes up roughly every 625 characters. Our test
-message is ~1,900 characters, so it *will* expose the difference. Treat the
+message is ~1,900 characters, so it _will_ expose the difference. Treat the
 narrative description as unreliable and the message decryption as the arbiter.
 
 **2. Latch before stepping.** The stepping decision must read the sixes and
-middle positions *before* anything advances. The reference implementation
+middle positions _before_ anything advances. The reference implementation
 flags this as "crucial" in a comment. Stepping the sixes switch first and then
 testing its position is off by one.
 
@@ -107,7 +107,7 @@ crosses the slow-switch event and cannot pass with a wrong stepping rule.
 ## Wiring data
 
 Published in **Freeman, Sullivan & Weierud, "PURPLE Revealed: Simulation and
-Computer-aided Cryptanalysis of Angooki Taipu B"**, *Cryptologia* 27(1), 2003 —
+Computer-aided Cryptanalysis of Angooki Taipu B"**, _Cryptologia_ 27(1), 2003 —
 [PDF is public](https://cryptocellar.org/pubs/purple-revealed.pdf). 100
 permutation rows total: 25 × 6 for the sixes, 25 × 20 for each twenties stage.
 
@@ -123,13 +123,13 @@ Two provenance caveats to carry into the code:
 
 **Phase 1 — engine — DONE.** 50 tests, verified against the 14-part message.
 
-| File | Contents |
-|---|---|
-| `src/lib/purple/data.ts` | the 100 permutation rows, 1-based as published, with a source citation |
-| `src/lib/purple/switch.ts` | `SteppingSwitch` — 25 positions, `step()`, `forward()`, `reverse()` |
-| `src/lib/purple/plugboard.ts` | 26-letter alphabet permutation + the 6/20 routing |
-| `src/lib/purple/machine.ts` | `Purple97` — wiring the four switches, the stepping rule, `encrypt`/`decrypt`, `parseKey('9-1,24,6-23')` |
-| `tests/purple/*.test.ts` | table validation (all rows are permutations), switch mechanics, stepping-sequence unit tests, and the 14-part message decryption |
+| File                          | Contents                                                                                                                         |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `src/lib/purple/data.ts`      | the 100 permutation rows, 1-based as published, with a source citation                                                           |
+| `src/lib/purple/switch.ts`    | `SteppingSwitch` — 25 positions, `step()`, `forward()`, `reverse()`                                                              |
+| `src/lib/purple/plugboard.ts` | 26-letter alphabet permutation + the 6/20 routing                                                                                |
+| `src/lib/purple/machine.ts`   | `Purple97` — wiring the four switches, the stepping rule, `encrypt`/`decrypt`, `parseKey('9-1,24,6-23')`                         |
+| `tests/purple/*.test.ts`      | table validation (all rows are permutations), switch mechanics, stepping-sequence unit tests, and the 14-part message decryption |
 
 Built as `data.ts` + `machine.ts` + `index.ts` — the `SteppingSwitch` class is
 small and has no independent use, so it lives in `machine.ts` rather than its own
@@ -186,7 +186,7 @@ grounds that it drags in a rename plus navigation plus two divergent UIs. That
 reasoning was wrong on two counts:
 
 - **The rename is free.** No VCS, no remote, no CI in this project — it is `mv` and a `package.json` field.
-- **The two divergent UIs are a wash.** PURPLE needs its own component tree under *every* option, so it cannot discriminate between them.
+- **The two divergent UIs are a wash.** PURPLE needs its own component tree under _every_ option, so it cannot discriminate between them.
 
 Remove those and (a) is strictly less machinery than (b) for the same outcome:
 one build, one Tauri shell, one deploy, one theme, one storage layer. (b) would
@@ -195,12 +195,12 @@ apps needed different dependencies or deploy targets. Neither applies here.
 
 Measured coupling that (a) has to clear:
 
-| Location | Enigma-specific references |
-|---|---|
-| `storage/driver.ts` | 3 × `MachineConfig` |
+| Location                  | Enigma-specific references       |
+| ------------------------- | -------------------------------- |
+| `storage/driver.ts`       | 3 × `MachineConfig`              |
 | `storage/localStorage.ts` | 1, plus the `enigma:presets` key |
-| `storage/tauriFs.ts` | 1 |
-| `state/presets.svelte.ts` | 3 |
+| `storage/tauriFs.ts`      | 1                                |
+| `state/presets.svelte.ts` | 3                                |
 
 About 20 lines: make `PresetDriver` generic over its config type and namespace
 the storage key per machine. Worth doing on its own merits — the storage layer
@@ -215,6 +215,6 @@ Build order stays (c)-first, because Phase 1 is identical under any option:
 ## Sources
 
 - [Wikipedia — Type B Cipher Machine](https://en.wikipedia.org/wiki/Type_B_Cipher_Machine) (architecture, sixes/twenties split, service history)
-- [Freeman, Sullivan & Weierud, "PURPLE Revealed", *Cryptologia* 27(1), 2003](https://cryptocellar.org/pubs/purple-revealed.pdf) (wiring tables, keying procedure, 14-part message)
+- [Freeman, Sullivan & Weierud, "PURPLE Revealed", _Cryptologia_ 27(1), 2003](https://cryptocellar.org/pubs/purple-revealed.pdf) (wiring tables, keying procedure, 14-part message)
 - [Frode Weierud's CryptoCellar — PURPLE machine](https://cryptocellar.org/simula/purple/index.html)
 - [gremmie/purple](https://github.com/gremmie/purple) — MIT-licensed Python reference implementation; source of the validated tables and the working stepping rule

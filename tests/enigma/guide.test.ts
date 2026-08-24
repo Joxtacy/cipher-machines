@@ -66,8 +66,8 @@ describe('docs/guide.md', () => {
 			const letter = indexToChar(e.positions[1]);
 			dwell.set(letter, (dwell.get(letter) ?? 0) + 1);
 		}
-		expect(dwell.get('E')).toBe(26);   // the notch: 26 visits of 1 press
-		expect(dwell.get('F')).toBe(650);  // 26 visits of 25 presses
+		expect(dwell.get('E')).toBe(26); // the notch: 26 visits of 1 press
+		expect(dwell.get('F')).toBe(650); // 26 visits of 25 presses
 		for (const letter of 'ABCDGHIJKLMNOPQRSTUVWXYZ') {
 			expect(dwell.get(letter), letter).toBe(676); // 26 visits of 26
 		}
@@ -88,8 +88,16 @@ describe('docs/guide.md', () => {
 
 	it('10 plug pairs leave exactly 6 letters unswapped', () => {
 		const pairs: [string, string][] = [
-			['A', 'B'], ['C', 'D'], ['E', 'F'], ['G', 'H'], ['I', 'J'],
-			['K', 'L'], ['M', 'N'], ['O', 'P'], ['Q', 'R'], ['S', 'T']
+			['A', 'B'],
+			['C', 'D'],
+			['E', 'F'],
+			['G', 'H'],
+			['I', 'J'],
+			['K', 'L'],
+			['M', 'N'],
+			['O', 'P'],
+			['Q', 'R'],
+			['S', 'T']
 		];
 		const swapped = new Set(pairs.flat());
 		expect(26 - swapped.size).toBe(6);

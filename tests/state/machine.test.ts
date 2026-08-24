@@ -90,7 +90,12 @@ describe('MachineStore', () => {
 		const m = new MachineStore();
 		for (let i = 0; i < 500; i++) m.pressKey('A');
 		expect(m.recentKeys.length).toBe(500);
-		expect(m.recentKeys.map((k) => k.output).join('').slice(0, 10)).toBe('BDZGOWCXLT');
+		expect(
+			m.recentKeys
+				.map((k) => k.output)
+				.join('')
+				.slice(0, 10)
+		).toBe('BDZGOWCXLT');
 	});
 
 	it('records only letters on the tape and never steps on a non-letter', () => {

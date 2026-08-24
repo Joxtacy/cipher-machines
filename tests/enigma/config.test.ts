@@ -17,9 +17,15 @@ describe('parseConfig', () => {
 			rings: [1, 20, 11],
 			positions: [25, 0, 13],
 			reflector: 'C',
-			plugboard: [['a', 'v'], ['B', 'S']]
+			plugboard: [
+				['a', 'v'],
+				['B', 'S']
+			]
 		});
-		expect(out.plugboard).toEqual([['A', 'V'], ['B', 'S']]);
+		expect(out.plugboard).toEqual([
+			['A', 'V'],
+			['B', 'S']
+		]);
 	});
 
 	it.each([
@@ -36,15 +42,36 @@ describe('parseConfig', () => {
 		['plugboard not an array', { ...valid(), plugboard: 'AB' }],
 		['malformed plug pair', { ...valid(), plugboard: [['A']] }],
 		['non-letter plug', { ...valid(), plugboard: [['A', '1']] }],
-		['reused plug letter', { ...valid(), plugboard: [['A', 'B'], ['A', 'C']] }],
+		[
+			'reused plug letter',
+			{
+				...valid(),
+				plugboard: [
+					['A', 'B'],
+					['A', 'C']
+				]
+			}
+		],
 		['self plug pair', { ...valid(), plugboard: [['A', 'A']] }],
-		['eleven plug pairs', {
-			...valid(),
-			plugboard: [
-				['A', 'B'], ['C', 'D'], ['E', 'F'], ['G', 'H'], ['I', 'J'], ['K', 'L'],
-				['M', 'N'], ['O', 'P'], ['Q', 'R'], ['S', 'T'], ['U', 'V']
-			]
-		}]
+		[
+			'eleven plug pairs',
+			{
+				...valid(),
+				plugboard: [
+					['A', 'B'],
+					['C', 'D'],
+					['E', 'F'],
+					['G', 'H'],
+					['I', 'J'],
+					['K', 'L'],
+					['M', 'N'],
+					['O', 'P'],
+					['Q', 'R'],
+					['S', 'T'],
+					['U', 'V']
+				]
+			}
+		]
 	])('rejects %s', (_label, input) => {
 		expect(() => parseConfig(input)).toThrow();
 	});

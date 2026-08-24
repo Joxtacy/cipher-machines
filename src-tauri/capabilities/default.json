@@ -1,19 +1,16 @@
 {
-  "$schema": "../gen/schemas/desktop-schema.json",
-  "identifier": "default",
-  "description": "default permissions for Cipher Machines",
-  "windows": ["main"],
-  "permissions": [
-    "core:default",
-    "fs:allow-app-read-recursive",
-    "fs:allow-app-write-recursive",
-    "fs:allow-mkdir",
-    {
-      "identifier": "fs:scope",
-      "allow": [
-        { "path": "$APPDATA/presets" },
-        { "path": "$APPDATA/presets/**" }
-      ]
-    }
-  ]
+	"$schema": "../gen/schemas/desktop-schema.json",
+	"identifier": "default",
+	"description": "default permissions for Cipher Machines",
+	"windows": ["main"],
+	"permissions": [
+		"core:default",
+		"fs:allow-app-read-recursive",
+		"fs:allow-app-write-recursive",
+		"fs:allow-mkdir",
+		{
+			"identifier": "fs:scope",
+			"allow": [{ "path": "$APPDATA/presets" }, { "path": "$APPDATA/presets/**" }]
+		}
+	]
 }

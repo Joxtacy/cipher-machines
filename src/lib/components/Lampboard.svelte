@@ -35,8 +35,12 @@
 		gap: 0.55rem;
 	}
 
-	.row.offset-1 { padding-left: 1.1rem; }
-	.row.offset-0 { padding-left: 0; }
+	.row.offset-1 {
+		padding-left: 1.1rem;
+	}
+	.row.offset-0 {
+		padding-left: 0;
+	}
 
 	.lamp {
 		position: relative;
@@ -61,7 +65,9 @@
 		letter-spacing: 0.02em;
 		color: var(--lamp-letter-off);
 		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-		transition: color 80ms ease, text-shadow 80ms ease;
+		transition:
+			color 80ms ease,
+			text-shadow 80ms ease;
 		user-select: none;
 		z-index: 1;
 	}
@@ -70,7 +76,12 @@
 		position: absolute;
 		inset: -10px;
 		border-radius: 50%;
-		background: radial-gradient(circle, var(--lamp-glow) 0%, var(--lamp-glow-soft) 35%, transparent 70%);
+		background: radial-gradient(
+			circle,
+			var(--lamp-glow) 0%,
+			var(--lamp-glow-soft) 35%,
+			transparent 70%
+		);
 		opacity: 0;
 		transition: opacity 80ms ease;
 		pointer-events: none;

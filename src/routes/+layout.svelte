@@ -52,7 +52,9 @@
 		color: var(--muted);
 	}
 
-	a:hover { color: var(--brand-text); }
+	a:hover {
+		color: var(--brand-text);
+	}
 
 	a[aria-current='page'] {
 		color: var(--brand-text);

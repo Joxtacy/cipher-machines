@@ -26,7 +26,12 @@ export interface PresetDriver {
 }
 
 export function safeFilename(name: string): string {
-	return name.replace(/[^A-Za-z0-9 _-]/g, '_').trim().slice(0, 64) || 'untitled';
+	return (
+		name
+			.replace(/[^A-Za-z0-9 _-]/g, '_')
+			.trim()
+			.slice(0, 64) || 'untitled'
+	);
 }
 
 /**

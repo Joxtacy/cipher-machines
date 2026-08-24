@@ -1,15 +1,11 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import {
-		purple,
-		SWITCH_LABELS,
-		type SwitchSlot,
-	} from "$lib/state/purple.svelte";
-	import { purplePresets } from "$lib/state/presets.svelte";
-	import { isValidAlphabet, type SwitchRole } from "$lib/purple/machine";
-	import Keyboard from "./Keyboard.svelte";
-	import Tape from "./Tape.svelte";
-	import PresetManager from "./PresetManager.svelte";
+	import { onMount } from 'svelte';
+	import { purple, SWITCH_LABELS, type SwitchSlot } from '$lib/state/purple.svelte';
+	import { purplePresets } from '$lib/state/presets.svelte';
+	import { isValidAlphabet, type SwitchRole } from '$lib/purple/machine';
+	import Keyboard from './Keyboard.svelte';
+	import Tape from './Tape.svelte';
+	import PresetManager from './PresetManager.svelte';
 
 	let pressed: string | null = $state(null);
 	let releaseTimer: ReturnType<typeof setTimeout> | null = null;
@@ -21,7 +17,7 @@
 
 	let canRewind = $derived(purple.recentKeys.length > 0);
 	let messageStartLabel = $derived(
-		purple.messageStart.map((p) => String(p + 1).padStart(2, "0")).join(" "),
+		purple.messageStart.map((p) => String(p + 1).padStart(2, '0')).join(' ')
 	);
 
 	const slots: SwitchSlot[] = [0, 1, 2, 3];
@@ -49,10 +45,7 @@
 	function releaseLetter() {
 		pressed = null;
 		if (releaseTimer) clearTimeout(releaseTimer);
-		releaseTimer = setTimeout(
-			() => (purple.lastOutput = purple.lastOutput),
-			90,
-		);
+		releaseTimer = setTimeout(() => (purple.lastOutput = purple.lastOutput), 90);
 	}
 
 	function commitAlphabet() {
@@ -62,16 +55,15 @@
 	}
 
 	function roleOf(stage: SwitchRole): string {
-		if (purple.fastSwitch === stage) return "fast";
-		if (purple.middleSwitch === stage) return "middle";
-		return "slow";
+		if (purple.fastSwitch === stage) return 'fast';
+		if (purple.middleSwitch === stage) return 'middle';
+		return 'slow';
 	}
 
 	function onKeyDown(e: KeyboardEvent) {
 		if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
 		const target = e.target as HTMLElement | null;
-		if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA"))
-			return;
+		if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) return;
 		if (e.key.length === 1 && /^[a-zA-Z-]$/.test(e.key)) {
 			e.preventDefault();
 			pressLetter(e.key);
@@ -83,11 +75,11 @@
 	}
 
 	onMount(() => {
-		window.addEventListener("keydown", onKeyDown);
-		window.addEventListener("keyup", onKeyUp);
+		window.addEventListener('keydown', onKeyDown);
+		window.addEventListener('keyup', onKeyUp);
 		return () => {
-			window.removeEventListener("keydown", onKeyDown);
-			window.removeEventListener("keyup", onKeyUp);
+			window.removeEventListener('keydown', onKeyDown);
+			window.removeEventListener('keyup', onKeyUp);
 		};
 	});
 </script>
@@ -103,13 +95,9 @@
 				</div>
 			</div>
 			<div class="mode" role="group" aria-label="Direction">
-				{#each ["encrypt", "decrypt"] as const as m (m)}
-					<button
-						type="button"
-						class:active={purple.mode === m}
-						onclick={() => purple.setMode(m)}
-					>
-						{m === "encrypt" ? "Encipher" : "Decipher"}
+				{#each ['encrypt', 'decrypt'] as const as m (m)}
+					<button type="button" class:active={purple.mode === m} onclick={() => purple.setMode(m)}>
+						{m === 'encrypt' ? 'Encipher' : 'Decipher'}
 					</button>
 				{/each}
 			</div>
@@ -121,9 +109,7 @@
 					<div class="legend">
 						<span class="label">{SWITCH_LABELS[slot]}</span>
 						{#if slot > 0}
-							<span class="role {roleOf(slot as SwitchRole)}"
-								>{roleOf(slot as SwitchRole)}</span
-							>
+							<span class="role {roleOf(slot as SwitchRole)}">{roleOf(slot as SwitchRole)}</span>
 						{:else}
 							<span class="role always">every key</span>
 						{/if}
@@ -139,9 +125,7 @@
 						</svg>
 					</button>
 					<div class="window">
-						<span class="value"
-							>{String(purple.switches[slot] + 1).padStart(2, "0")}</span
-						>
+						<span class="value">{String(purple.switches[slot] + 1).padStart(2, '0')}</span>
 					</div>
 					<button
 						type="button"
@@ -158,14 +142,12 @@
 		</section>
 
 		<section class="printer bezel" aria-label="Printer">
-			<span class="printer-label"
-				>{purple.mode === "encrypt" ? "Cipher" : "Plain"}</span
-			>
+			<span class="printer-label">{purple.mode === 'encrypt' ? 'Cipher' : 'Plain'}</span>
 			<span class="printer-out" class:lit={purple.lastOutput !== null}>
-				{purple.lastOutput ?? "·"}
+				{purple.lastOutput ?? '·'}
 			</span>
 			<span class="printer-hint">
-				{purple.mode === "decrypt" ? "type “-” for a garble" : "A–Z only"}
+				{purple.mode === 'decrypt' ? 'type “-” for a garble' : 'A–Z only'}
 			</span>
 		</section>
 
@@ -217,9 +199,7 @@
 
 			<div class="group">
 				<h3>Switch speeds</h3>
-				<p class="hint">
-					One twenties stage steps per character. Slow is whatever is left.
-				</p>
+				<p class="hint">One twenties stage steps per character. Slow is whatever is left.</p>
 				{#each SPEED_ROWS as row (row.role)}
 					<div class="row">
 						<span class="row-label">{row.role}</span>
@@ -250,7 +230,7 @@
 						disabled={!canRewind}
 						title={canRewind
 							? `Wind the dials back to ${messageStartLabel} and clear the tape`
-							: "Nothing to rewind — no message in progress"}
+							: 'Nothing to rewind — no message in progress'}
 						onclick={() => purple.rewind()}
 					>
 						Rewind to {messageStartLabel}
@@ -318,8 +298,8 @@
 		position: relative;
 		padding: 1.2rem 1.4rem 1.6rem;
 		border-radius: 22px;
-		background: var(--chassis-grain),
-			linear-gradient(180deg, var(--chassis) 0%, var(--chassis-edge) 100%);
+		background:
+			var(--chassis-grain), linear-gradient(180deg, var(--chassis) 0%, var(--chassis-edge) 100%);
 		background-blend-mode: overlay, normal;
 		border: 1px solid var(--chassis-edge);
 		box-shadow:

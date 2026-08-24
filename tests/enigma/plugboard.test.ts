@@ -9,7 +9,10 @@ describe('Plugboard', () => {
 	});
 
 	it('swaps configured pairs symmetrically', () => {
-		const p = new Plugboard([['A', 'B'], ['C', 'D']]);
+		const p = new Plugboard([
+			['A', 'B'],
+			['C', 'D']
+		]);
 		expect(p.swap(charToIndex('A'))).toBe(charToIndex('B'));
 		expect(p.swap(charToIndex('B'))).toBe(charToIndex('A'));
 		expect(p.swap(charToIndex('C'))).toBe(charToIndex('D'));
@@ -21,6 +24,12 @@ describe('Plugboard', () => {
 	});
 
 	it('rejects reused letters', () => {
-		expect(() => new Plugboard([['A', 'B'], ['A', 'C']])).toThrow();
+		expect(
+			() =>
+				new Plugboard([
+					['A', 'B'],
+					['A', 'C']
+				])
+		).toThrow();
 	});
 });

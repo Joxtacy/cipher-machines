@@ -6,9 +6,9 @@ import { ROTOR_IDS, Rotor, type RotorId } from './rotors';
 export type Triple<T> = [T, T, T];
 
 export interface MachineConfig {
-	rotors: Triple<RotorId>;       // [left, middle, right]
-	rings: Triple<number>;          // 0-25, Ringstellung
-	positions: Triple<number>;      // 0-25, Grundstellung
+	rotors: Triple<RotorId>; // [left, middle, right]
+	rings: Triple<number>; // 0-25, Ringstellung
+	positions: Triple<number>; // 0-25, Grundstellung
 	reflector: ReflectorId;
 	plugboard: PlugPair[];
 }
@@ -21,12 +21,20 @@ export const DEFAULT_CONFIG: MachineConfig = {
 	plugboard: []
 };
 
-function triple<T>(v: unknown, field: string, check: (x: unknown) => boolean, expected: string): Triple<T> {
+function triple<T>(
+	v: unknown,
+	field: string,
+	check: (x: unknown) => boolean,
+	expected: string
+): Triple<T> {
 	if (!Array.isArray(v) || v.length !== 3) {
 		throw new Error(`${field} must be an array of 3 values`);
 	}
 	for (const x of v) {
-		if (!check(x)) throw new Error(`${field} contains an invalid value: ${JSON.stringify(x)} (expected ${expected})`);
+		if (!check(x))
+			throw new Error(
+				`${field} contains an invalid value: ${JSON.stringify(x)} (expected ${expected})`
+			);
 	}
 	return [...v] as Triple<T>;
 }
@@ -47,16 +55,25 @@ export function parseConfig(raw: unknown): MachineConfig {
 	if (typeof raw !== 'object' || raw === null) throw new Error('Config must be an object');
 	const c = raw as Record<string, unknown>;
 
-	const rotors = triple<RotorId>(c.rotors, 'rotors', (x) => ROTOR_IDS.includes(x as RotorId), ROTOR_IDS.join('/'));
-	if (new Set(rotors).size !== 3) throw new Error(`rotors must be distinct, got ${rotors.join(', ')}`);
+	const rotors = triple<RotorId>(
+		c.rotors,
+		'rotors',
+		(x) => ROTOR_IDS.includes(x as RotorId),
+		ROTOR_IDS.join('/')
+	);
+	if (new Set(rotors).size !== 3)
+		throw new Error(`rotors must be distinct, got ${rotors.join(', ')}`);
 
 	if (!REFLECTOR_IDS.includes(c.reflector as ReflectorId)) {
-		throw new Error(`Unknown reflector: ${JSON.stringify(c.reflector)} (expected ${REFLECTOR_IDS.join('/')})`);
+		throw new Error(
+			`Unknown reflector: ${JSON.stringify(c.reflector)} (expected ${REFLECTOR_IDS.join('/')})`
+		);
 	}
 
 	if (!Array.isArray(c.plugboard)) throw new Error('plugboard must be an array');
 	const plugboard = c.plugboard.map((pair, i) => {
-		if (!Array.isArray(pair) || pair.length !== 2) throw new Error(`plugboard[${i}] must be a pair of letters`);
+		if (!Array.isArray(pair) || pair.length !== 2)
+			throw new Error(`plugboard[${i}] must be a pair of letters`);
 		return pair.map((l) => {
 			if (typeof l !== 'string' || !/^[A-Za-z]$/.test(l)) {
 				throw new Error(`plugboard[${i}] contains an invalid letter: ${JSON.stringify(l)}`);
@@ -83,9 +100,9 @@ export class Enigma {
 	private plugboard: Plugboard;
 
 	constructor(cfg: MachineConfig = DEFAULT_CONFIG) {
-		this.left   = new Rotor(cfg.rotors[0], cfg.positions[0], cfg.rings[0]);
+		this.left = new Rotor(cfg.rotors[0], cfg.positions[0], cfg.rings[0]);
 		this.middle = new Rotor(cfg.rotors[1], cfg.positions[1], cfg.rings[1]);
-		this.right  = new Rotor(cfg.rotors[2], cfg.positions[2], cfg.rings[2]);
+		this.right = new Rotor(cfg.rotors[2], cfg.positions[2], cfg.rings[2]);
 		this.reflector = new Reflector(cfg.reflector);
 		this.plugboard = new Plugboard(cfg.plugboard);
 	}
@@ -95,9 +112,9 @@ export class Enigma {
 	}
 
 	setPositions(p: Triple<number>): void {
-		this.left.position   = mod26(p[0]);
+		this.left.position = mod26(p[0]);
 		this.middle.position = mod26(p[1]);
-		this.right.position  = mod26(p[2]);
+		this.right.position = mod26(p[2]);
 	}
 
 	private step(): void {

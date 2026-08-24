@@ -44,13 +44,7 @@
 
 	--rotor-window-bg: #0a0703;
 	--rotor-window-rim: #2a1a0d;
-	--rotor-metal: linear-gradient(
-		180deg,
-		#dab47e 0%,
-		#a47540 35%,
-		#6a4823 65%,
-		#3d2914 100%
-	);
+	--rotor-metal: linear-gradient(180deg, #dab47e 0%, #a47540 35%, #6a4823 65%, #3d2914 100%);
 	--rotor-metal-side: #6a4a2c;
 	--rotor-letter: #fbeac3;
 	--rotor-thumb-arrow: #f4cf7d;

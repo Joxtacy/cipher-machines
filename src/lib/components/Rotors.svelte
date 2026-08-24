@@ -62,8 +62,8 @@
 					type="button"
 					class="ring-btn"
 					aria-label="Decrement {labels[slot].toLowerCase()} rotor ring"
-					onclick={() => onAdvanceRing(slot, -1)}
-				>−</button>
+					onclick={() => onAdvanceRing(slot, -1)}>−</button
+				>
 				<div class="ring-display" aria-label="{labels[slot]} ring setting">
 					<span class="ring-letter">{indexToChar(rings[slot])}</span>
 				</div>
@@ -71,8 +71,8 @@
 					type="button"
 					class="ring-btn"
 					aria-label="Increment {labels[slot].toLowerCase()} rotor ring"
-					onclick={() => onAdvanceRing(slot, 1)}
-				>+</button>
+					onclick={() => onAdvanceRing(slot, 1)}>+</button
+				>
 			</div>
 			<span class="caption ring-caption">Ring</span>
 		</div>
@@ -125,7 +125,9 @@
 		margin-top: 0.05rem;
 	}
 
-	.ring-caption { margin-top: 0; }
+	.ring-caption {
+		margin-top: 0;
+	}
 
 	.thumb {
 		width: 2.2rem;
@@ -140,11 +142,17 @@
 			inset 0 1px 0 rgba(255, 230, 180, 0.25),
 			inset 0 -1px 2px rgba(0, 0, 0, 0.5),
 			0 2px 3px rgba(0, 0, 0, 0.5);
-		transition: transform 60ms ease, filter 60ms ease;
+		transition:
+			transform 60ms ease,
+			filter 60ms ease;
 	}
 
-	.thumb:hover { filter: brightness(1.08); }
-	.thumb:active { transform: translateY(1px); }
+	.thumb:hover {
+		filter: brightness(1.08);
+	}
+	.thumb:active {
+		transform: translateY(1px);
+	}
 
 	.window {
 		position: relative;
@@ -188,7 +196,13 @@
 		position: absolute;
 		inset: 0;
 		pointer-events: none;
-		background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 35%, transparent 65%, rgba(0, 0, 0, 0.4) 100%);
+		background: linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.15) 0%,
+			transparent 35%,
+			transparent 65%,
+			rgba(0, 0, 0, 0.4) 100%
+		);
 	}
 
 	.ring-row {
@@ -210,10 +224,15 @@
 		font-size: 0.85rem;
 		line-height: 1;
 		font-family: var(--font-stack-mono);
-		transition: border-color 60ms ease, color 60ms ease;
+		transition:
+			border-color 60ms ease,
+			color 60ms ease;
 	}
 
-	.ring-btn:hover { border-color: var(--accent); color: var(--accent-strong); }
+	.ring-btn:hover {
+		border-color: var(--accent);
+		color: var(--accent-strong);
+	}
 
 	.ring-display {
 		min-width: 1.4rem;

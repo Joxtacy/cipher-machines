@@ -82,7 +82,7 @@
 
 			<div class="lamps-keys">
 				<Lampboard lit={machine.lampLit} />
-				<Keyboard pressed={pressed} onPress={pressLetter} onRelease={releaseLetter} />
+				<Keyboard {pressed} onPress={pressLetter} onRelease={releaseLetter} />
 			</div>
 
 			<Plugboard
@@ -137,8 +137,7 @@
 		padding: 1.2rem 1.4rem 1.6rem;
 		border-radius: 22px;
 		background:
-			var(--chassis-grain),
-			linear-gradient(180deg, var(--chassis) 0%, var(--chassis-edge) 100%);
+			var(--chassis-grain), linear-gradient(180deg, var(--chassis) 0%, var(--chassis-edge) 100%);
 		background-blend-mode: overlay, normal;
 		border: 1px solid var(--chassis-edge);
 		box-shadow:
@@ -155,7 +154,11 @@
 		padding: 0.2rem 0.4rem 1rem;
 	}
 
-	.brand { display: flex; gap: 0.85rem; align-items: center; }
+	.brand {
+		display: flex;
+		gap: 0.85rem;
+		align-items: center;
+	}
 	.brand-mark {
 		font-size: 1.6rem;
 		color: var(--accent-strong);

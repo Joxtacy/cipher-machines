@@ -10,10 +10,7 @@
 
 	let { plugboard, onAdd, onRemove, partner }: Props = $props();
 
-	const ROWS: string[][] = [
-		'ABCDEFGHIJKLM'.split(''),
-		'NOPQRSTUVWXYZ'.split('')
-	];
+	const ROWS: string[][] = ['ABCDEFGHIJKLM'.split(''), 'NOPQRSTUVWXYZ'.split('')];
 
 	// Layout constants — kept in sync with .socket and .row CSS.
 	const SOCKET_W = 41.6; // 2.6rem at 16px
@@ -84,7 +81,7 @@
 				const my = Math.max(from.y, to.y) + 28 + (i % 4) * 6;
 				return { a, b, from, to, mx, my };
 			})
-			.filter(<T>(x: T | null): x is T => x !== null)
+			.filter(<T,>(x: T | null): x is T => x !== null)
 	);
 </script>
 
@@ -134,7 +131,8 @@
 
 	<p class="hint">
 		{#if pendingFirst}
-			Pick the partner for <strong>{pendingFirst}</strong> · click <strong>{pendingFirst}</strong> again to cancel
+			Pick the partner for <strong>{pendingFirst}</strong> · click <strong>{pendingFirst}</strong> again
+			to cancel
 		{:else}
 			Click a letter to start a pair · click a paired letter to remove it · right-click also removes
 		{/if}
@@ -186,11 +184,18 @@
 			inset 0 1px 0 rgba(255, 220, 160, 0.07),
 			inset 0 -1px 2px rgba(0, 0, 0, 0.6),
 			0 2px 4px rgba(0, 0, 0, 0.45);
-		transition: transform 60ms ease, border-color 60ms ease;
+		transition:
+			transform 60ms ease,
+			border-color 60ms ease;
 	}
 
-	.socket:hover { border-color: var(--accent); }
-	.socket.pending { border-color: var(--accent-strong); transform: translateY(-2px); }
+	.socket:hover {
+		border-color: var(--accent);
+	}
+	.socket.pending {
+		border-color: var(--accent-strong);
+		transform: translateY(-2px);
+	}
 
 	.legend {
 		font-family: var(--font-stack-display);

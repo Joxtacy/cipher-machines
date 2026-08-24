@@ -34,7 +34,10 @@ function dayKey(wo: string, rings: string, stecker: string, grund: string): Mach
 		rings: triple(rings),
 		positions: triple(grund),
 		reflector: 'B',
-		plugboard: stecker.split(' ').filter(Boolean).map((p) => [p[0], p[1]] as PlugPair)
+		plugboard: stecker
+			.split(' ')
+			.filter(Boolean)
+			.map((p) => [p[0], p[1]] as PlugPair)
 	};
 }
 
@@ -49,61 +52,92 @@ interface Day {
 
 const DAYS: Day[] = [
 	{
-		date: '27 Jun 1941', wo: '352', rings: 'RGP',
+		date: '27 Jun 1941',
+		wo: '352',
+		rings: 'RGP',
 		stecker: 'AV BG CH EN FU KO MS PX RY TW',
 		// Message 51 is omitted on purpose — the source footnotes it as garbled
 		// and it does not verify. See the note in docs/historical-keys.md.
-		msgs: [['SDG', 'EKN', 'LTA'], ['BPG', 'KGM', 'CSX']]
+		msgs: [
+			['SDG', 'EKN', 'LTA'],
+			['BPG', 'KGM', 'CSX']
+		]
 	},
 	{
-		date: '8 Jul 1941', wo: '432', rings: 'PKF',
+		date: '8 Jul 1941',
+		wo: '432',
+		rings: 'PKF',
 		stecker: 'CY EL FH GS IJ KQ MW PV RZ TU',
 		msgs: [['OKF', 'QLV', 'PIK']]
 	},
 	{
-		date: '13 Aug 1941', wo: '253', rings: 'THE',
+		date: '13 Aug 1941',
+		wo: '253',
+		rings: 'THE',
 		stecker: 'AD BH FG IJ KN LZ MR OS PW QV',
 		msgs: [['AMQ', 'LKF', 'BRZ']]
 	},
 	{
-		date: '19 Aug 1941', wo: '213', rings: 'YPC',
+		date: '19 Aug 1941',
+		wo: '213',
+		rings: 'YPC',
 		stecker: 'AK BI DG FN HL JO MT QY RV UW',
 		msgs: [['ALY', 'XQE', 'BGO']]
 	},
 	{
-		date: '28 Aug 1941', wo: '345', rings: 'CWJ',
+		date: '28 Aug 1941',
+		wo: '345',
+		rings: 'CWJ',
 		stecker: 'BH CS DU EI FR GM JO KQ TX VZ',
 		msgs: [['DIB', 'TCO', 'ABC']]
 	},
 	{
-		date: '9 Sep 1941', wo: '342', rings: 'KFZ',
+		date: '9 Sep 1941',
+		wo: '342',
+		rings: 'KFZ',
 		stecker: 'AZ DV ET FS GQ JP LX MY NR OW',
 		msgs: [['BOZ', 'IWD', 'ERT']]
 	},
 	{
-		date: '16 Sep 1941', wo: '513', rings: 'LSB',
+		date: '16 Sep 1941',
+		wo: '513',
+		rings: 'LSB',
 		stecker: 'AP BO CY DU ES FN GR IV JT LZ',
 		msgs: [
-			['LTB', 'MMF', 'SAU'], ['AIA', 'XIE', 'FUT'], ['SDC', 'JKP', 'BOK'],
-			['CSW', 'MEK', 'KLO'], ['KPH', 'YNH', 'AFF']
+			['LTB', 'MMF', 'SAU'],
+			['AIA', 'XIE', 'FUT'],
+			['SDC', 'JKP', 'BOK'],
+			['CSW', 'MEK', 'KLO'],
+			['KPH', 'YNH', 'AFF']
 		]
 	},
 	{
-		date: '27 Sep 1941', wo: '421', rings: 'YHO',
+		date: '27 Sep 1941',
+		wo: '421',
+		rings: 'YHO',
 		stecker: 'AG CP DK EL HQ IT JV MX OY RW',
 		msgs: [
-			['NWH', 'GGP', 'SPE'], ['STG', 'YTF', 'SAU'], ['XFG', 'GSM', 'SEE'],
-			['GUR', 'JPC', 'HOR'], ['ZIP', 'NDT', 'WAS'], ['SCJ', 'RWT', 'WAS'],
-			['XHK', 'FHP', 'WAS'], ['TJI', 'KPJ', 'GRA']
+			['NWH', 'GGP', 'SPE'],
+			['STG', 'YTF', 'SAU'],
+			['XFG', 'GSM', 'SEE'],
+			['GUR', 'JPC', 'HOR'],
+			['ZIP', 'NDT', 'WAS'],
+			['SCJ', 'RWT', 'WAS'],
+			['XHK', 'FHP', 'WAS'],
+			['TJI', 'KPJ', 'GRA']
 		]
 	},
 	{
-		date: '2 Oct 1941', wo: '452', rings: 'DVM',
+		date: '2 Oct 1941',
+		wo: '452',
+		rings: 'DVM',
 		stecker: 'AP BU CX DH ER FQ IW KO LZ MS',
 		msgs: [['FXP', 'SOV', 'WAS']]
 	},
 	{
-		date: '3 Oct 1941', wo: '213', rings: 'TIP',
+		date: '3 Oct 1941',
+		wo: '213',
+		rings: 'TIP',
 		stecker: 'BC DE FG HI JK LX MQ NO ST VZ',
 		msgs: [['DTI', 'AZZ', 'SEE']]
 	}

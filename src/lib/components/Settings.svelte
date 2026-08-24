@@ -46,7 +46,8 @@
 					<span>{slotLabels[slot]}</span>
 					<select
 						value={rotors[slot]}
-						onchange={(e) => onSetRotor(slot, (e.currentTarget as HTMLSelectElement).value as RotorId)}
+						onchange={(e) =>
+							onSetRotor(slot, (e.currentTarget as HTMLSelectElement).value as RotorId)}
 					>
 						{#each ROTOR_OPTIONS as id (id)}
 							<option value={id}>{id}</option>
@@ -117,10 +118,11 @@
 </div>
 
 <style>
-
-
-
-	.row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+	.row {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
 
 	.field {
 		display: flex;
@@ -146,7 +148,9 @@
 		cursor: pointer;
 	}
 
-	select:hover { border-color: var(--accent); }
+	select:hover {
+		border-color: var(--accent);
+	}
 
 	.note {
 		margin: 0.5rem 0 0;
@@ -155,7 +159,9 @@
 		font-style: italic;
 	}
 
-	.reflectors { gap: 0.4rem; }
+	.reflectors {
+		gap: 0.4rem;
+	}
 
 	.pill {
 		padding: 0.45rem 0.85rem;
@@ -167,17 +173,24 @@
 		font-weight: 700;
 		font-size: 0.9rem;
 		letter-spacing: 0.05em;
-		transition: background 80ms ease, border-color 80ms ease, color 80ms ease;
+		transition:
+			background 80ms ease,
+			border-color 80ms ease,
+			color 80ms ease;
 	}
 
-	.pill:hover { border-color: var(--accent); }
+	.pill:hover {
+		border-color: var(--accent);
+	}
 	.pill.active {
 		background: var(--accent-strong);
 		color: #1a1108;
 		border-color: var(--accent-strong);
 	}
 
-	.actions { gap: 0.5rem; }
+	.actions {
+		gap: 0.5rem;
+	}
 
 	.action {
 		padding: 0.5rem 0.85rem;
@@ -190,9 +203,19 @@
 		transition: border-color 80ms ease;
 	}
 
-	.action:hover { border-color: var(--accent); }
-	.action:disabled { opacity: 0.4; cursor: default; }
+	.action:hover {
+		border-color: var(--accent);
+	}
+	.action:disabled {
+		opacity: 0.4;
+		cursor: default;
+	}
 
-	.action.danger { border-color: rgba(208, 82, 66, 0.4); }
-	.action.danger:hover { border-color: var(--danger); color: var(--danger); }
+	.action.danger {
+		border-color: rgba(208, 82, 66, 0.4);
+	}
+	.action.danger:hover {
+		border-color: var(--danger);
+		color: var(--danger);
+	}
 </style>

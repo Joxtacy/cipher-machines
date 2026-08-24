@@ -49,7 +49,12 @@
 <div class="card">
 	<header>
 		<h3>Presets</h3>
-		<span class="kind" title={storageKind === 'tauri-fs' ? 'Stored as files in app data dir' : 'Stored in localStorage'}>
+		<span
+			class="kind"
+			title={storageKind === 'tauri-fs'
+				? 'Stored as files in app data dir'
+				: 'Stored in localStorage'}
+		>
 			{storageKind === 'tauri-fs' ? 'desktop fs' : 'browser'}
 		</span>
 	</header>
@@ -100,9 +105,6 @@
 </div>
 
 <style>
-
-
-
 	.kind {
 		font-family: var(--font-stack-mono);
 		font-size: 0.7rem;
@@ -111,7 +113,10 @@
 		letter-spacing: 0.1em;
 	}
 
-	.save-row { display: flex; gap: 0.4rem; }
+	.save-row {
+		display: flex;
+		gap: 0.4rem;
+	}
 
 	input {
 		flex: 1;
@@ -124,7 +129,10 @@
 		color: var(--brand-text);
 	}
 
-	input:focus { outline: none; border-color: var(--accent); }
+	input:focus {
+		outline: none;
+		border-color: var(--accent);
+	}
 
 	.save-row button {
 		padding: 0.45rem 0.7rem;
@@ -137,10 +145,24 @@
 		transition: filter 80ms ease;
 	}
 
-	.save-row button:hover:not(:disabled) { filter: brightness(1.05); }
-	.save-row button:disabled { opacity: 0.4; cursor: not-allowed; }
+	.save-row button:hover:not(:disabled) {
+		filter: brightness(1.05);
+	}
+	.save-row button:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
 
-	ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; max-height: 14rem; overflow-y: auto; }
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		max-height: 14rem;
+		overflow-y: auto;
+	}
 
 	li {
 		display: flex;
@@ -163,7 +185,9 @@
 		transition: border-color 80ms ease;
 	}
 
-	.load:hover { border-color: var(--accent); }
+	.load:hover {
+		border-color: var(--accent);
+	}
 
 	.name {
 		font-weight: 600;
@@ -186,12 +210,21 @@
 		background: var(--key-face);
 		color: var(--muted);
 		font-size: 0.9rem;
-		transition: color 80ms ease, border-color 80ms ease;
+		transition:
+			color 80ms ease,
+			border-color 80ms ease;
 	}
 
-	.del:hover { color: var(--danger); border-color: var(--danger); }
+	.del:hover {
+		color: var(--danger);
+		border-color: var(--danger);
+	}
 
-	.muted { color: var(--muted); font-size: 0.85rem; margin: 0; }
+	.muted {
+		color: var(--muted);
+		font-size: 0.85rem;
+		margin: 0;
+	}
 
 	.error {
 		margin: 0;

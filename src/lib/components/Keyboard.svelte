@@ -30,8 +30,14 @@
 					onmousedown={() => handleDown(letter)}
 					onmouseup={handleUp}
 					onmouseleave={handleUp}
-					ontouchstart={(e) => { e.preventDefault(); handleDown(letter); }}
-					ontouchend={(e) => { e.preventDefault(); handleUp(); }}
+					ontouchstart={(e) => {
+						e.preventDefault();
+						handleDown(letter);
+					}}
+					ontouchend={(e) => {
+						e.preventDefault();
+						handleUp();
+					}}
 				>
 					<span class="cap">{letter}</span>
 				</button>
@@ -54,16 +60,19 @@
 		gap: 0.55rem;
 	}
 
-	.row.offset-1 { padding-left: 1.1rem; }
-	.row.offset-0 { padding-left: 0; }
+	.row.offset-1 {
+		padding-left: 1.1rem;
+	}
+	.row.offset-0 {
+		padding-left: 0;
+	}
 
 	.key {
 		width: 2.9rem;
 		height: 2.9rem;
 		border-radius: 50%;
 		padding: 0;
-		background:
-			radial-gradient(circle at 30% 25%, #3a2a1c 0%, var(--key-face) 70%, #050302 100%);
+		background: radial-gradient(circle at 30% 25%, #3a2a1c 0%, var(--key-face) 70%, #050302 100%);
 		border: 1px solid var(--key-rim);
 		display: grid;
 		place-items: center;
@@ -72,7 +81,10 @@
 			inset 0 -2px 4px rgba(0, 0, 0, 0.5),
 			0 3px 0 #2a1a0d,
 			0 5px 8px rgba(0, 0, 0, 0.55);
-		transition: transform 60ms ease, box-shadow 60ms ease, background 60ms ease;
+		transition:
+			transform 60ms ease,
+			box-shadow 60ms ease,
+			background 60ms ease;
 		user-select: none;
 	}
 
@@ -81,8 +93,12 @@
 	}
 
 	.key.pressed {
-		background:
-			radial-gradient(circle at 30% 25%, #2a1d12 0%, var(--key-face-pressed) 70%, #050302 100%);
+		background: radial-gradient(
+			circle at 30% 25%,
+			#2a1d12 0%,
+			var(--key-face-pressed) 70%,
+			#050302 100%
+		);
 		border-color: var(--key-rim-pressed);
 		transform: translateY(2px);
 		box-shadow:

@@ -64,7 +64,10 @@ describe('14-part message, 7 December 1941', () => {
 			c === GARBLE || PART1_CIPHERTEXT[i] === GARBLE ? null : c
 		);
 		const reEnciphered = machine().encrypt(
-			clean.map((c, i) => c ?? recovered[i]).join('').replaceAll(GARBLE, 'A')
+			clean
+				.map((c, i) => c ?? recovered[i])
+				.join('')
+				.replaceAll(GARBLE, 'A')
 		);
 		for (let i = 0; i < clean.length; i++) {
 			if (clean[i] === null) continue;

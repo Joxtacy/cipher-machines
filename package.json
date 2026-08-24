@@ -10,6 +10,8 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "prettier --write .",
+		"lint": "prettier --check .",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"tauri": "tauri",
@@ -22,6 +24,8 @@
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
 		"@tauri-apps/cli": "^2.11.0",
 		"@types/node": "^25.6.0",
+		"prettier": "^3.9.6",
+		"prettier-plugin-svelte": "^4.1.1",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
 		"typescript": "^6.0.2",
@@ -31,5 +35,9 @@
 	"dependencies": {
 		"@tauri-apps/api": "^2.11.0",
 		"@tauri-apps/plugin-fs": "^2.5.0"
+	},
+	"packageManager": "pnpm@10.33.2",
+	"engines": {
+		"node": ">=22"
 	}
 }

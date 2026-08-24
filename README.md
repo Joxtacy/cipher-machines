@@ -30,22 +30,27 @@ Scope: rotors **I-V** and reflectors **UKW-A / UKW-B / UKW-C**, which is the Eni
 
 ## Running it
 
+This project uses **pnpm** (pinned via `packageManager` in `package.json`).
+
 ```sh
 # Install
-npm install
+pnpm install
 
 # Web (browser, http://localhost:5173)
-npm run dev
+pnpm run dev
 
 # Desktop (Tauri window)
-npm run tauri:dev
+pnpm run tauri:dev
 
 # Production builds
-npm run build           # static web build → ./build
-npm run tauri:build     # desktop installer for the host OS
+pnpm run build           # static web build → ./build
+pnpm run tauri:build     # desktop installer for the host OS
 
-# Tests
-npm test
+# Tests, types, formatting
+pnpm test
+pnpm run check
+pnpm run format          # write
+pnpm run lint            # check only
 ```
 
 ## Project layout
@@ -96,7 +101,7 @@ Skins that change colours/materials only need this. Skins that change layout (e.
 
 ## PURPLE (Type B Cipher Machine)
 
-The Japanese Foreign Ministry's *Angooki Taipu B*, 1939 — at `/purple`. Not a
+The Japanese Foreign Ministry's _Angooki Taipu B_, 1939 — at `/purple`. Not a
 rotor machine: four telephone stepping switches, the alphabet split into a group
 of 6 and a group of 20 on separate paths, and **no reflector**, so unlike Enigma
 it is not reciprocal and a letter can encipher to itself.
@@ -106,7 +111,7 @@ it is not reciprocal and a letter can encipher to itself.
 - Garble markers (`-`) pass through on decipher while still stepping the switches
 - Verified by decrypting **part 1 of the 14-part message of 7 December 1941**
 
-Wiring comes from Freeman, Sullivan & Weierud, *"PURPLE Revealed"*, Cryptologia
+Wiring comes from Freeman, Sullivan & Weierud, _"PURPLE Revealed"_, Cryptologia
 27(1), 2003. See `docs/purple.md` for the guide and worked example, and
 `docs/purple-plan.md` for implementation notes and the two stepping traps.
 

@@ -10,11 +10,11 @@ transcriptions**.
 
 Known surviving physical material includes:
 
-- **Wehrmacht Army Staff *Maschinenschlüssel Nr. 28*** and a **Sonder-Maschinenschlüssel "BGS"** — photographed from holdings of the U.S. National Archives.
+- **Wehrmacht Army Staff _Maschinenschlüssel Nr. 28_** and a **Sonder-Maschinenschlüssel "BGS"** — photographed from holdings of the U.S. National Archives.
 - **Kriegsmarine TRITON** inner and external settings, **Schlüssel M TRITON Offizier**, and **Sonderschlüssel M NIXE** — from Frode Weierud's collection.
 - Bletchley Park's own working papers in the UK National Archives **HW** series at Kew (e.g. HW 25/8, HW 25/9, HW 25/27) — organisation of Enigma and recovery of key usage. Not digitised; readable in person only.
 
-The catch: these are *images of paper*. Almost none of the daily rows have been
+The catch: these are _images of paper_. Almost none of the daily rows have been
 transcribed into machine-readable settings. A sheet covered a month with the
 dates in reverse order down the page so each row could be torn off and burned
 once used — and burning them is exactly what the operators did, so most sheets
@@ -29,19 +29,19 @@ So the settings below come from a different route.
 Almost every Enigma key you can find in machine-readable form today was
 **reconstructed by modern cryptanalysis of authentic intercepted ciphertext**,
 not copied off a captured sheet. The intercepts are genuine wartime traffic; the
-*keys* are recovered, chiefly by Frode Weierud's Breaking German Army Ciphers
+_keys_ are recovered, chiefly by Frode Weierud's Breaking German Army Ciphers
 project and the M4 Message Breaking Project.
 
 That is a real distinction, so every entry here is tagged:
 
-| Tag | Meaning |
-|---|---|
-| **✅ verified** | Decrypted successfully in this repo. Machine-checked in `tests/enigma/`. |
+| Tag               | Meaning                                                                                                                                                  |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **✅ verified**   | Decrypted successfully in this repo. Machine-checked in `tests/enigma/`.                                                                                 |
 | **☑️ consistent** | Published settings whose indicator deciphers to the published message key on this engine — a strong internal check, but no plaintext to confirm against. |
-| **📄 documented** | Published settings this simulator cannot run (needs a 4-rotor M4). Reproduced for reference, unverified here. |
+| **📄 documented** | Published settings this simulator cannot run (needs a 4-rotor M4). Reproduced for reference, unverified here.                                            |
 
 One encouraging cross-check: the 7 July 1941 row of the daily-key table below is
-the *same* key that decrypts the Operation Barbarossa signal — two independently
+the _same_ key that decrypts the Operation Barbarossa signal — two independently
 published sources agreeing, and the resulting German plaintext confirms both.
 
 ---
@@ -51,15 +51,15 @@ published sources agreeing, and the resulting German plaintext confirms both.
 The strongest entry here: settings, ciphertext **and** plaintext, and the
 decryption reproduces the documented German text exactly.
 
-| Setting | Value |
-|---|---|
-| Machine | Enigma I (3 rotors) |
-| Reflector | UKW-B |
-| Wheel order | II IV V |
-| Ringstellung | B U L (02 21 12) |
-| Steckerverbindungen | AV BS CG DL FU HZ IN KM OW RX |
-| Message key (window letters) | B L A |
-| Kenngruppe | RFUGZ (strip before decrypting) |
+| Setting                      | Value                           |
+| ---------------------------- | ------------------------------- |
+| Machine                      | Enigma I (3 rotors)             |
+| Reflector                    | UKW-B                           |
+| Wheel order                  | II IV V                         |
+| Ringstellung                 | B U L (02 21 12)                |
+| Steckerverbindungen          | AV BS CG DL FU HZ IN KM OW RX   |
+| Message key (window letters) | B L A                           |
+| Kenngruppe                   | RFUGZ (strip before decrypting) |
 
 Ciphertext (part 1, Kenngruppe removed):
 
@@ -78,10 +78,10 @@ UAFFLIEGERSTRASZERIQTUNGXDUBROWKIXDUBROWKIXOPOTSCHKAXOPOTSCHKAX
 UMXEINSAQTDREINULLXUHRANGETRETENXANGRIFFXINFXRGTX
 ```
 
-*"Reconnaissance detachment from Kurtinowa, north-west of Sebez … direction
-Dubrowki, Opotschka. Moved off at 18:30. Attack. Infantry regiment."*
+_"Reconnaissance detachment from Kurtinowa, north-west of Sebez … direction
+Dubrowki, Opotschka. Moved off at 18:30. Attack. Infantry regiment."_
 
-Note the wartime conventions: `X` for spaces and full stops, `Q` for *ch*
+Note the wartime conventions: `X` for spaces and full stops, `Q` for _ch_
 (`BEOBAQTET`, `AQT`), `SZ` for ß (`STRASZE`), and place names sent twice for
 resilience. `UAFFLIEGERSTRASZE` is garbled in the original transmission — that is
 how it came off the wire, not a decryption error.
@@ -96,21 +96,21 @@ Recovered daily keys. Reflector is UKW-B throughout. Wheel order is written in
 the German style: three digits for the left, middle and right slots, so `423`
 means **IV II III**.
 
-| Date | Wheel order | Ringstellung | Steckerverbindungen | Kenngruppen |
-|---|---|---|---|---|
-| 1 Jul | 423 | AAV | CT EM FI GJ HK NQ OR SW UY VX | LYASO |
-| 5 Jul | 354 | WHJ | BI CW EQ FX HZ JN KY MT OV PR | XTMSY, LXACA, DEROP |
-| 6 Jul | 513 | IRD | AN BM DH EI KQ LS OT PV RU YZ | ABGUX, ABAHP |
-| 7 Jul | 245 | BUL | AV BS CG DL FU HZ IN KM OW RX | XIVFG |
-| 8 Jul | 432 | PKF | CY EL FH GS IJ KQ MW PV RZ TU | GLPTL, ABDJV, HBNVE |
-| 9 Jul | 315 | NAV | AC BN FM GI JL KO PU QX RZ TV | CASBL, WEUWY, BEYWU, DESGF, TUGFI, WNFGI, SOFGI, ABUNY, NEWUY, ENIDN |
-| 10 Jul | 521 | JQH | AS BG CK DZ IO LR MP QT UW VY | ANIJQ, ABNAQ, RDNAQ, BIOQN, SHNQO, TXIJQ, MVUEH, RLGRZ, NZGRZ |
-| 12 Jul | 254 | YCM | AJ BD CZ EH GU IK LV MQ NX OS | MAKJH |
-| 13 Jul | 423 | GTO | AD EH GY IM KN LR OZ QV TX WU | ANERF, MYFRE, GSEAN, EGERF |
-| 14 Jul | 531 | LWB | BT CH DR EW FU GK JO LV MS PZ | CFYZR |
-| 18 Jul | 425 | AGM | DM EP FL HI JR KY NQ OU SW TZ | HJVVS, XNRLR, LSEGB |
-| 25 Jul | 325 | RVA | BE CK DL GM HZ JO NW QU RT SV | AJLJD |
-| 29 Jul | 521 | MJW | AW CS DR EY FO KU LZ NV PX QT | KLDIO |
+| Date   | Wheel order | Ringstellung | Steckerverbindungen           | Kenngruppen                                                          |
+| ------ | ----------- | ------------ | ----------------------------- | -------------------------------------------------------------------- |
+| 1 Jul  | 423         | AAV          | CT EM FI GJ HK NQ OR SW UY VX | LYASO                                                                |
+| 5 Jul  | 354         | WHJ          | BI CW EQ FX HZ JN KY MT OV PR | XTMSY, LXACA, DEROP                                                  |
+| 6 Jul  | 513         | IRD          | AN BM DH EI KQ LS OT PV RU YZ | ABGUX, ABAHP                                                         |
+| 7 Jul  | 245         | BUL          | AV BS CG DL FU HZ IN KM OW RX | XIVFG                                                                |
+| 8 Jul  | 432         | PKF          | CY EL FH GS IJ KQ MW PV RZ TU | GLPTL, ABDJV, HBNVE                                                  |
+| 9 Jul  | 315         | NAV          | AC BN FM GI JL KO PU QX RZ TV | CASBL, WEUWY, BEYWU, DESGF, TUGFI, WNFGI, SOFGI, ABUNY, NEWUY, ENIDN |
+| 10 Jul | 521         | JQH          | AS BG CK DZ IO LR MP QT UW VY | ANIJQ, ABNAQ, RDNAQ, BIOQN, SHNQO, TXIJQ, MVUEH, RLGRZ, NZGRZ        |
+| 12 Jul | 254         | YCM          | AJ BD CZ EH GU IK LV MQ NX OS | MAKJH                                                                |
+| 13 Jul | 423         | GTO          | AD EH GY IM KN LR OZ QV TX WU | ANERF, MYFRE, GSEAN, EGERF                                           |
+| 14 Jul | 531         | LWB          | BT CH DR EW FU GK JO LV MS PZ | CFYZR                                                                |
+| 18 Jul | 425         | AGM          | DM EP FL HI JR KY NQ OU SW TZ | HJVVS, XNRLR, LSEGB                                                  |
+| 25 Jul | 325         | RVA          | BE CK DL GM HZ JO NW QU RT SV | AJLJD                                                                |
+| 29 Jul | 521         | MJW          | AW CS DR EY FO KU LZ NV PX QT | KLDIO                                                                |
 
 The 10 July message bearing Kenngruppe `SIPVX` used a different key that day:
 wheel order **521**, Ringstellung **MRP**, Stecker **AG BJ CP DS ER FQ HV IU KT LW**.
@@ -127,106 +127,116 @@ plaintext: set the rotors to the **Grundstellung**, type the enciphered group,
 and you should get the published **message key**. All rows below pass that check
 on this engine except where noted.
 
-*Grundstellung* was transmitted in clear; *message key* is where you actually set
-the windows to read the body; *stop* is where the rotors finished.
+_Grundstellung_ was transmitted in clear; _message key_ is where you actually set
+the windows to read the body; _stop_ is where the rotors finished.
 
 ### 27 June 1941 — UKW-B, wheel order 352, rings RGP
+
 Stecker: `AV BG CH EN FU KO MS PX RY TW`
 
-| Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check |
-|---|---|---|---|---|---|---|
-| 45 | HXZKV | SDG | EKN | LTA | LVM | ☑️ |
-| 48 | WRMKX | BPG | KGM | CSX | CXY | ☑️ |
-| 51 | PLDRV | ZKT | FLP → `[HLP]` | RTZ | SCB | ⚠️ see note |
+| Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check       |
+| --- | ---------- | ------------- | -------------- | ----------- | ---- | ----------- |
+| 45  | HXZKV      | SDG           | EKN            | LTA         | LVM  | ☑️          |
+| 48  | WRMKX      | BPG           | KGM            | CSX         | CXY  | ☑️          |
+| 51  | PLDRV      | ZKT           | FLP → `[HLP]`  | RTZ         | SCB  | ⚠️ see note |
 
 > **Message 51 does not verify.** The source flags it with a footnote and gives a
 > bracketed correction, `[HLP]`, for a garble in the intercept. On this engine
 > `ZKT`+`FLP` yields `APZ` and the corrected `ZKT`+`HLP` yields `RPZ`, against a
 > published message key of `RTZ` — one letter out. The other two messages from
-> the same day verify cleanly, so the *day key* is sound; this row's indicator or
+> the same day verify cleanly, so the _day key_ is sound; this row's indicator or
 > message key is mis-transcribed somewhere. Recorded as-is rather than quietly
 > patched.
 
 ### 8 July 1941 — UKW-B, wheel order 432, rings PKF
+
 Stecker: `CY EL FH GS IJ KQ MW PV RZ TU`
 
 | Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check |
-|---|---|---|---|---|---|---|
-| 23 | KHLPT | OKF | QLV | PIK | PMA | ☑️ |
+| --- | ---------- | ------------- | -------------- | ----------- | ---- | ----- |
+| 23  | KHLPT      | OKF           | QLV            | PIK         | PMA  | ☑️    |
 
 ### 13 August 1941 — UKW-B, wheel order 253, rings THE
+
 Stecker: `AD BH FG IJ KN LZ MR OS PW QV`
 
 | Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check |
-|---|---|---|---|---|---|---|
-| 7 | KEJNQ | AMQ | LKF | BRZ | BXW | ☑️ |
+| --- | ---------- | ------------- | -------------- | ----------- | ---- | ----- |
+| 7   | KEJNQ      | AMQ           | LKF            | BRZ         | BXW  | ☑️    |
 
 ### 19 August 1941 — UKW-B, wheel order 213, rings YPC
+
 Stecker: `AK BI DG FN HL JO MT QY RV UW`
 
 | Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check |
-|---|---|---|---|---|---|---|
-| 19 | ALWOK | ALY | XQE | BGO | BLI | ☑️ |
+| --- | ---------- | ------------- | -------------- | ----------- | ---- | ----- |
+| 19  | ALWOK      | ALY           | XQE            | BGO         | BLI  | ☑️    |
 
 ### 28 August 1941 — UKW-B, wheel order 345, rings CWJ
+
 Stecker: `BH CS DU EI FR GM JO KQ TX VZ`
 
 | Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check |
-|---|---|---|---|---|---|---|
-| 81 | ALQFI | DIB | TCO | ABC | AEK | ☑️ |
+| --- | ---------- | ------------- | -------------- | ----------- | ---- | ----- |
+| 81  | ALQFI      | DIB           | TCO            | ABC         | AEK  | ☑️    |
 
 ### 9 September 1941 — UKW-B, wheel order 342, rings KFZ
+
 Stecker: `AZ DV ET FS GQ JP LX MY NR OW`
 
 | Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check |
-|---|---|---|---|---|---|---|
-| 38 | GEHRG | BOZ | IWD | ERT | EUP | ☑️ |
+| --- | ---------- | ------------- | -------------- | ----------- | ---- | ----- |
+| 38  | GEHRG      | BOZ           | IWD            | ERT         | EUP  | ☑️    |
 
 ### 16 September 1941 — UKW-B, wheel order 513, rings LSB
+
 Stecker: `AP BO CY DU ES FN GR IV JT LZ`
 
 | Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check |
-|---|---|---|---|---|---|---|
-| 59 | ADAFU | LTB | MMF | SAU | SDJ | ☑️ |
-| 60 | CHAFU | AIA | XIE | FUT | FYQ | ☑️ |
-| 69 | DKAFU | SDC | JKP | BOK | CSW | ☑️ |
-| 70 | NOEGP | CSW | MEK | KLO | KPH | ☑️ |
-| 71 | HOEPG | KPH | YNH | AFF | AIL | ☑️ |
+| --- | ---------- | ------------- | -------------- | ----------- | ---- | ----- |
+| 59  | ADAFU      | LTB           | MMF            | SAU         | SDJ  | ☑️    |
+| 60  | CHAFU      | AIA           | XIE            | FUT         | FYQ  | ☑️    |
+| 69  | DKAFU      | SDC           | JKP            | BOK         | CSW  | ☑️    |
+| 70  | NOEGP      | CSW           | MEK            | KLO         | KPH  | ☑️    |
+| 71  | HOEPG      | KPH           | YNH            | AFF         | AIL  | ☑️    |
 
 Note how message 70 starts at `CSW`, exactly where 69 stopped, and 71 starts at
 `KPH` where 70 stopped — the operator simply carried on without rewinding.
 
 ### 27 September 1941 — UKW-B, wheel order 421, rings YHO
+
 Stecker: `AG CP DK EL HQ IT JV MX OY RW`
 
-| Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check |
-|---|---|---|---|---|---|---|
-| 103 | ARPTZ | NWH | GGP | SPE | STG | ☑️ |
-| 104 | ABBHQ | STG | YTF | SAU | SCJ | ☑️ |
-| 105 | ANQIX | XFG | GSM | SEE | TJI | ☑️ |
-| 106 | FDTZP | GUR | JPC | HOR | HQI | ☑️ |
-| 114 | DAFPX | ZIP | NDT | WAS | XGM | ☑️ |
-| 115 | *(missing)* | SCJ | RWT | WAS | XHK | ☑️ |
-| 116 | ITF?? | XHK | FHP | WAS | XFF | ☑️ |
-| 117 | ?AQBH | TJI | KPJ | GRA | GUR | ☑️ |
+| Msg | Kenngruppe  | Grundstellung | Enciphered key | Message key | Stop | Check |
+| --- | ----------- | ------------- | -------------- | ----------- | ---- | ----- |
+| 103 | ARPTZ       | NWH           | GGP            | SPE         | STG  | ☑️    |
+| 104 | ABBHQ       | STG           | YTF            | SAU         | SCJ  | ☑️    |
+| 105 | ANQIX       | XFG           | GSM            | SEE         | TJI  | ☑️    |
+| 106 | FDTZP       | GUR           | JPC            | HOR         | HQI  | ☑️    |
+| 114 | DAFPX       | ZIP           | NDT            | WAS         | XGM  | ☑️    |
+| 115 | _(missing)_ | SCJ           | RWT            | WAS         | XHK  | ☑️    |
+| 116 | ITF??       | XHK           | FHP            | WAS         | XFF  | ☑️    |
+| 117 | ?AQBH       | TJI           | KPJ            | GRA         | GUR  | ☑️    |
 
 Three messages keyed from `WAS` on one day — an operator reusing a favourite
 word instead of choosing randomly. Exactly the habit ("cillies") Bletchley
 exploited. Partial Kenngruppen are illegible in the intercept.
 
 ### 2 October 1941 — UKW-B, wheel order 452, rings DVM
+
 Stecker: `AP BU CX DH ER FQ IW KO LZ MS`
 
 | Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check |
-|---|---|---|---|---|---|---|
-| 8 | ALGXZ | FXP | SOV | WAS | WDH | ☑️ |
+| --- | ---------- | ------------- | -------------- | ----------- | ---- | ----- |
+| 8   | ALGXZ      | FXP           | SOV            | WAS         | WDH  | ☑️    |
 
 ### 3 October 1941 — UKW-B, wheel order 213, rings TIP
+
 Stecker: `BC DE FG HI JK LX MQ NO ST VZ`
 
 | Msg | Kenngruppe | Grundstellung | Enciphered key | Message key | Stop | Check |
-|---|---|---|---|---|---|---|
-| 4 | NKMOW | DTI | AZZ | SEE | SKJ | ☑️ |
+| --- | ---------- | ------------- | -------------- | ----------- | ---- | ----- |
+| 4   | NKMOW      | DTI           | AZZ            | SEE         | SKJ  | ☑️    |
 
 That day's plugboard — `BC DE FG HI JK LX MQ NO ST VZ` — is almost entirely
 adjacent letter pairs. A lazy operator, and precisely the kind of predictability
@@ -245,14 +255,14 @@ This is also the only entry that exercises the **pre-1940 doubled indicator**:
 at the Grundstellung, the six-letter group deciphers to the three-letter message
 key sent twice.
 
-| Setting | Value |
-|---|---|
-| Machine | Enigma I |
-| Reflector | **UKW-A** |
-| Wheel order | II I III |
-| Ringstellung | 24 13 22 (X M V) |
-| Steckerverbindungen | AM FI NV PS TU WZ (only 6 cables — 1930 practice) |
-| Grundstellung | 06 15 12 (F O L) |
+| Setting              | Value                                               |
+| -------------------- | --------------------------------------------------- |
+| Machine              | Enigma I                                            |
+| Reflector            | **UKW-A**                                           |
+| Wheel order          | II I III                                            |
+| Ringstellung         | 24 13 22 (X M V)                                    |
+| Steckerverbindungen  | AM FI NV PS TU WZ (only 6 cables — 1930 practice)   |
+| Grundstellung        | 06 15 12 (F O L)                                    |
 | Enciphered indicator | `PKPJXI` → `ABLABL`, i.e. message key **ABL** twice |
 
 ```
@@ -265,7 +275,7 @@ FEINDLIQEINFANTERIEKOLONNEBEOBAQTETXANFANGSUEDAUSGANG
 BAERWALDEXENDEDREIKMOSTWAERTSNEUSTADT
 ```
 
-*"Enemy infantry column observed. Beginning south exit Bärwalde. Ending 3 km east of Neustadt."*
+_"Enemy infantry column observed. Beginning south exit Bärwalde. Ending 3 km east of Neustadt."_
 
 Regression tests: `tests/enigma/historical.test.ts` covers both the indicator
 recovery and the body.
@@ -287,7 +297,7 @@ negotiations."
 
 Tokyo sent roughly 5,000 words in two blocks to its Washington embassy, with
 orders to deliver at **1:00 p.m. Washington time** — 7:30 a.m. in Hawaii.
-American codebreakers had deciphered and translated most of it *hours before*
+American codebreakers had deciphered and translated most of it _hours before_
 the deadline, while the embassy's own staff were still transcribing. Their
 transcription ran so late that the memorandum was not handed to Cordell Hull
 until **more than an hour after the attack on Pearl Harbor had begun**. US naval
@@ -297,17 +307,17 @@ to warn Pearl Harbor; the warning arrived too late.
 So the machine below was read faster by its adversary than by its intended
 recipient.
 
-| Setting | Value |
-|---|---|
-| Machine | Type B Cipher Machine (PURPLE), 4 stepping switches |
-| Switch key | `9-1,24,6-23` |
-| Sixes switch start | 9 |
-| Twenties I / II / III start | 1 / 24 / 6 |
-| Fast switch | stage II |
-| Middle switch | stage III |
-| Slow switch | stage I (whatever is left) |
-| Daily alphabet | `NOKTYUXEQLHBRMPDICJASVWGZF` |
-| Sixes group | `NOKTYU` (first six letters of the alphabet) |
+| Setting                     | Value                                               |
+| --------------------------- | --------------------------------------------------- |
+| Machine                     | Type B Cipher Machine (PURPLE), 4 stepping switches |
+| Switch key                  | `9-1,24,6-23`                                       |
+| Sixes switch start          | 9                                                   |
+| Twenties I / II / III start | 1 / 24 / 6                                          |
+| Fast switch                 | stage II                                            |
+| Middle switch               | stage III                                           |
+| Slow switch                 | stage I (whatever is left)                          |
+| Daily alphabet              | `NOKTYUXEQLHBRMPDICJASVWGZF`                        |
+| Sixes group                 | `NOKTYU` (first six letters of the alphabet)        |
 
 Part 1 opens:
 
@@ -361,16 +371,16 @@ text. See `docs/purple.md` for the full walkthrough.
 The signal announcing Dönitz as Hitler's successor. Needs the **M4**: a fourth
 (Greek) wheel and a thin reflector, neither of which this simulator has.
 
-| Setting | Value |
-|---|---|
-| Machine | Kriegsmarine M4 |
-| Reflector | C (thin) |
-| Greek wheel | Beta |
-| Wheel order | V VI VIII |
-| Ringstellung | E P E L |
+| Setting             | Value                         |
+| ------------------- | ----------------------------- |
+| Machine             | Kriegsmarine M4               |
+| Reflector           | C (thin)                      |
+| Greek wheel         | Beta                          |
+| Wheel order         | V VI VIII                     |
+| Ringstellung        | E P E L                       |
 | Steckerverbindungen | AE BF CM DQ HU JN LX PR SZ VW |
-| Grundstellung | N A E M |
-| Message key | C D S Z |
+| Grundstellung       | N A E M                       |
+| Message key         | C D S Z                       |
 
 Plaintext opens `KRKRALLEXXFOLGENDESISTSOFORTBEKANNTZUGEBENXX…`
 ("Urgent, to all — the following is to be made known immediately…").
@@ -386,7 +396,7 @@ Plaintext opens `KRKRALLEXXFOLGENDESISTSOFORTBEKANNTZUGEBENXX…`
 5. **Rotor windows** — set to the **message key**, not the Grundstellung. This simulator has no separate indicator stage, so the two-step procedure is collapsed.
 6. Type the ciphertext. The tape's lower line is your plaintext.
 
-To reproduce the *full* historical procedure, do the indicator step by hand:
+To reproduce the _full_ historical procedure, do the indicator step by hand:
 set the windows to the Grundstellung, type the enciphered group, read the
 message key off the lamps, then wind the windows to that and type the body.
 
@@ -397,7 +407,7 @@ message key off the lamps, then wind the windows to that and type the body.
 - [Frode Weierud's CryptoCellar — Enigma test message from 1930](https://cryptocellar.org/enigma/e-message-1930.html)
 - [Cryptomuseum — Enigma message, 1 May 1945 (M4)](https://www.cryptomuseum.com/crypto/enigma/msg/p1030681.htm)
 - [Cipher Machines and Cryptology — Enigma procedures](https://ciphermachinesandcryptology.com/en/enigmaproc.htm) (photographs of original key sheets)
-- [Freeman, Sullivan & Weierud, "PURPLE Revealed", *Cryptologia* 27(1), 2003](https://cryptocellar.org/pubs/purple-revealed.pdf) (PURPLE wiring, keying, and the 14-part message)
+- [Freeman, Sullivan & Weierud, "PURPLE Revealed", _Cryptologia_ 27(1), 2003](https://cryptocellar.org/pubs/purple-revealed.pdf) (PURPLE wiring, keying, and the 14-part message)
 - [Wikipedia — 14-part message](https://en.wikipedia.org/wiki/14-part_message) (content, transmission and delivery timing)
 - [Wikipedia — Cryptanalysis of the Enigma](https://en.wikipedia.org/wiki/Cryptanalysis_of_the_Enigma) (key sheet format, indicator procedure dates)
 - Barbarossa ciphertext and settings corroborated via the July 1941 key table above and by successful decryption in this repo.

@@ -1,9 +1,4 @@
-import {
-	DEFAULT_CONFIG,
-	Enigma,
-	type MachineConfig,
-	type Triple
-} from '$lib/enigma/machine';
+import { DEFAULT_CONFIG, Enigma, type MachineConfig, type Triple } from '$lib/enigma/machine';
 import { MAX_PLUG_PAIRS, type PlugPair } from '$lib/enigma/plugboard';
 import type { ReflectorId } from '$lib/enigma/reflectors';
 import type { RotorId } from '$lib/enigma/rotors';
@@ -70,10 +65,7 @@ export class MachineStore {
 			// If that ever matters: switch to push() (159x faster at 5k, 1387x at
 			// 20k) but verify in a browser that the Tape $derived still updates —
 			// the Node suite cannot see reactivity regressions.
-			this.recentKeys = [
-				...this.recentKeys,
-				{ input: upper, output: out, id: this.nextId++ }
-			];
+			this.recentKeys = [...this.recentKeys, { input: upper, output: out, id: this.nextId++ }];
 		}
 		return out;
 	}
@@ -137,9 +129,7 @@ export class MachineStore {
 		const A = a.toUpperCase();
 		const B = b.toUpperCase();
 		if (A === B) return;
-		const filtered = this.plugboard.filter(
-			([x, y]) => x !== A && x !== B && y !== A && y !== B
-		);
+		const filtered = this.plugboard.filter(([x, y]) => x !== A && x !== B && y !== A && y !== B);
 		if (filtered.length >= MAX_PLUG_PAIRS) return;
 		this.plugboard = [...filtered, [A, B]];
 	}

@@ -9,13 +9,15 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       # No version pinned here: pnpm/action-setup reads the packageManager
       # field in package.json, so the version stays in one place.
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v5
+      # cache: pnpm must stay explicit — setup-node v6 limited automatic caching
+      # to npm, so pnpm and yarn are opt-in now.
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: pnpm

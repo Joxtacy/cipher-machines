@@ -19,7 +19,7 @@ Pressing a key advances a rotor, _then_ sends current through a plugboard, throu
 
 | Component   | German name          | What it does                                                                                                             |
 | ----------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Keyboard    | Tastatur             | 26 letter keys; pressing one closes a circuit.                                                                           |
+| Keyboard    | Tastatur             | 26 letter keys in the German QWERTZU order, 9/8/9 across three rows; pressing one closes a circuit.                      |
 | Plugboard   | Steckerbrett         | Up to 10 cables swap pairs of letters before and after the rotors.                                                       |
 | Entry wheel | Eintrittswalze (ETW) | Fixed alphabet-to-rotor mapping. On army Enigmas it's the identity: A→A, B→B…                                            |
 | Rotors      | Walzen               | Three rotating discs, each with internal wiring that scrambles the alphabet. The operator picks 3 from a set of 5 (I–V). |

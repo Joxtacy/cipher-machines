@@ -28,9 +28,9 @@
 		"prettier-plugin-svelte": "^4.1.1",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
-		"typescript": "^6.0.2",
-		"vite": "^8.0.7",
-		"vitest": "^4.1.5"
+		"typescript": "^7.0.2",
+		"vite": "^8.2.2",
+		"vitest": "^4.1.11"
 	},
 	"dependencies": {
 		"@tauri-apps/api": "^2.11.0",

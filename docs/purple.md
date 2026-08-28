@@ -160,8 +160,14 @@ Open `/purple`, or the **PURPLE** tab at the top.
 
 ### Typing
 
-Mouse or physical keyboard. The **printer** strip shows the last output
-character. The **Tape** records input on top and output below.
+Mouse or physical keyboard. The on-screen keys use a standard **QWERTY**
+typewriter layout, not Enigma's German QWERTZU: PURPLE had no cipher keyboard
+of its own, and was driven by ordinary electric typewriters at each end. All
+traffic was in the 26-letter English alphabet, with Japanese transliterated to
+romaji first. (Sources describe the typewriters but do not record their exact
+layout, so QWERTY stands in as the period-standard arrangement.)
+
+The **printer** strip shows the last output character. The **Tape** records input on top and output below.
 
 When deciphering, `-` enters a **garble**: it passes through to the output and
 still steps the switches, which is what keeps the rest of a damaged intercept in

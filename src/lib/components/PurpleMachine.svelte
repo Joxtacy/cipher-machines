@@ -3,6 +3,7 @@
 	import { purple, SWITCH_LABELS, type SwitchSlot } from "$lib/state/purple.svelte";
 	import { purplePresets } from "$lib/state/presets.svelte";
 	import { isValidAlphabet, type SwitchRole } from "$lib/purple/machine";
+	import { TYPEWRITER_ROWS, TYPEWRITER_STAGGER } from "$lib/keyboard-layout";
 	import Keyboard from "./Keyboard.svelte";
 	import Tape from "./Tape.svelte";
 	import PresetManager from "./PresetManager.svelte";
@@ -151,7 +152,13 @@
 			</span>
 		</section>
 
-		<Keyboard {pressed} onPress={pressLetter} onRelease={releaseLetter} />
+		<Keyboard
+			{pressed}
+			rows={TYPEWRITER_ROWS}
+			stagger={TYPEWRITER_STAGGER}
+			onPress={pressLetter}
+			onRelease={releaseLetter}
+		/>
 	</div>
 
 	<aside class="side">

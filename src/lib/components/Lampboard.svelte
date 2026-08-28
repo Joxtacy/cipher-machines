@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { KEYBOARD_ROWS } from "$lib/keyboard-layout";
+	import { ENIGMA_ROWS } from "$lib/keyboard-layout";
 
 	interface Props {
 		lit: string | null;
@@ -9,7 +9,7 @@
 </script>
 
 <div class="lampboard bezel" aria-label="Lampboard">
-	{#each KEYBOARD_ROWS as row, rowIdx (rowIdx)}
+	{#each ENIGMA_ROWS as row, rowIdx (rowIdx)}
 		<div class="row" class:offset-1={rowIdx === 1} class:offset-0={rowIdx === 2}>
 			{#each row as letter (letter)}
 				<div class="lamp" class:on={lit === letter} aria-hidden="true">

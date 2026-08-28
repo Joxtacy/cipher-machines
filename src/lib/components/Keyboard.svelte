@@ -1,13 +1,23 @@
 <script lang="ts">
-	import { KEYBOARD_ROWS } from "$lib/keyboard-layout";
+	import { ENIGMA_ROWS, ENIGMA_STAGGER } from "$lib/keyboard-layout";
 
 	interface Props {
 		pressed: string | null;
 		onPress: (letter: string) => void;
 		onRelease: () => void;
+		/** Key rows to render. Defaults to the Enigma layout. */
+		rows?: readonly string[][];
+		/** Per-row indent in rem, matching `rows`. */
+		stagger?: readonly number[];
 	}
 
-	let { pressed, onPress, onRelease }: Props = $props();
+	let {
+		pressed,
+		onPress,
+		onRelease,
+		rows = ENIGMA_ROWS,
+		stagger = ENIGMA_STAGGER,
+	}: Props = $props();
 
 	function handleDown(letter: string) {
 		onPress(letter);
@@ -19,8 +29,8 @@
 </script>
 
 <div class="keyboard bezel" role="group" aria-label="Keyboard">
-	{#each KEYBOARD_ROWS as row, rowIdx (rowIdx)}
-		<div class="row" class:offset-1={rowIdx === 1} class:offset-0={rowIdx === 2}>
+	{#each rows as row, rowIdx (rowIdx)}
+		<div class="row" style="padding-left: {stagger[rowIdx] ?? 0}rem">
 			{#each row as letter (letter)}
 				<button
 					type="button"
@@ -58,13 +68,6 @@
 		display: flex;
 		justify-content: center;
 		gap: 0.55rem;
-	}
-
-	.row.offset-1 {
-		padding-left: 1.1rem;
-	}
-	.row.offset-0 {
-		padding-left: 0;
 	}
 
 	.key {
